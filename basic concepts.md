@@ -37,4 +37,4 @@ Predefined & user defined data type
                    int student_id;
                    char grade; }
 Data type: objects & operations
-* integer: +, -, **, /, %, =, ==, atoi()
+* integer: +, -, *, /, %, =, ==, atoi()
