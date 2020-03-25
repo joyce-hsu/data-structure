@@ -5,6 +5,7 @@
 3. data abstraction
 4. performance analysis & measurement
 
+---
 
 **system life cycle**
 Requirements:設計程式要知道其input output是什麼、主要達到功能是什麼
@@ -24,6 +25,7 @@ Verification:
 2. testing: correctness & efficiency
 3. error removal: well-document
              
+---
 
 **Evaluative judgments about programs**  
 
@@ -34,6 +36,8 @@ Use functions to create logical units?
 Code readable?  
 Use storage efficiently?  
 Running time acceptable?  
+
+---
 
 **Data Abstraction**  
 Predefined & user defined data type 
