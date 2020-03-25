@@ -35,10 +35,10 @@ Code readable?
 Use storage efficiently?  
 Running time acceptable?  
 
-**Data Abstraction**
+**Data Abstraction**  
 Predefined & user defined data type  
- - Struct student { char last_name;
+Struct student { char last_name;
                    int student_id;
                    char grade; }  
 Data type: objects & operations  
- - integer: +, -, *, /, %, =, ==, atoi()
+integer: +, -, *, /, %, =, ==, atoi()
