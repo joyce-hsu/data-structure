@@ -9,17 +9,20 @@
 **system life cycle**
 Requirements:設計程式要知道其input output是什麼、主要達到功能是什麼
 
-Analysis:1. bottom-up:從基本元件著手，再組合得到整體
-         2. top-down:由大局著手，為了要達使用者看到的樣子，要有什麼細節(較常用)
+Analysis:
+1. bottom-up:從基本元件著手，再組合得到整體
+2. top-down:由大局著手，為了要達使用者看到的樣子，要有什麼細節(較常用)
          
-Design:1. data objects
-       2. Operations:即是函式，牽涉到演算法
+Design:
+1. data objects
+2. Operations:即是函式，牽涉到演算法
 
 Refinement & coding:這時才開始寫程式，並根據output的結果不斷改良
 
-Verification:1. correctness proofs: selecting proved algorithms
-             2. testing: correctness & efficiency
-             3. error removal: well-document
+Verification:
+1. correctness proofs: selecting proved algorithms
+2. testing: correctness & efficiency
+3. error removal: well-document
              
 
 **Evaluative judgments about programs**
