@@ -25,19 +25,20 @@ Verification:
 3. error removal: well-document
              
 
-**Evaluative judgments about programs**
-Meet the original specification?
-Work correctly?
-Document?
-Use functions to create logical units?
-Code readable?
-Use storage efficiently?
-Running time acceptable?
+**Evaluative judgments about programs**  
+
+Meet the original specification?  
+Work correctly?  
+Document?  
+Use functions to create logical units?  
+Code readable?  
+Use storage efficiently?  
+Running time acceptable?  
 
 **Data Abstraction**
-Predefined & user defined data type
-* Struct student { char last_name;
+Predefined & user defined data type  
+ - Struct student { char last_name;
                    int student_id;
-                   char grade; }
-Data type: objects & operations
-* integer: +, -, *, /, %, =, ==, atoi()
+                   char grade; }  
+Data type: objects & operations  
+ - integer: +, -, *, /, %, =, ==, atoi()
