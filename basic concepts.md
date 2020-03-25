@@ -38,9 +38,10 @@ Running time acceptable?
 **Data Abstraction**  
 Predefined & user defined data type 
 ````
-Struct student { char last_name;
-                   int student_id;
-                   char grade; }  
+Struct student { 
+         char last_name;
+         int student_id;
+         char grade; }  
 ````
 Data type: objects & operations  
 integer: +, -, *, /, %, =, ==, atoi()
