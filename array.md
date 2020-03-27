@@ -13,6 +13,8 @@ Example: int list[5]: list[0], …, list[4] each contains an integer
 |------|---|:--|---|---|--:|
 | List |   |   |   |   |   |
 
+---
+
 **用array表示多項式**  
 
 Polynomial Representation 1
@@ -71,9 +73,9 @@ termArray[free].exp = e;  //次方
 free++;
 } // end of NewTerm
 ````
+---
 
-
-兩個多項式相加
+**兩個多項式相加**
 ````
 Polynomial Polynomial:: Add(Polynomial B)
 // return the sum of A(x) ( in *this) and B(x)
@@ -103,3 +105,18 @@ C.Finish = free – 1;
 return C;
 } // end of Add
 ````
+Analysis: O(n+m) where n (m) is the number of nonzeros in A(B).  
+複雜度分析 因為每個像都要比較，所以complexity是n+m
+
+---
+**Disadvantages of Representing Polynomials by Arrays**
+What should we do when free is going to exceed MaxTerms?
+- Either quit or reused the space of unused polynomials. But costly.  
+回收使用:寫一個destractor(解構函式)  告訴電腦這個多項式已經用過了
+有什麼缺點? 可能有些地方已用過，但有些空間仍占用，所以當初填新的方程式的函數就不能從free來寫
+需要重整:把有占用的移到一起(作業系統的memory management；磁碟管理 磁碟重整的概念)
+If use a single array of terms for each polynomial, it may alleviate the above issue but it penalizes the performance of the program due to the need of knowing the size of a polynomial beforehand
+
+**Sparse Martrix**
+怎麼表示陣列:宣告一個二維矩陣
+
