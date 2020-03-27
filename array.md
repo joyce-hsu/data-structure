@@ -1,4 +1,4 @@
-###Arrays
+### Arrays
 Array: a set of index and value
 
 `data structure`  
@@ -54,7 +54,7 @@ term Polynomial:: termArray[MaxTerms];
 int Polynomial::free = 0; // location of next free location in temArray
 ````
 
-###Adding a new Term
+**Adding a new Term**
 ````
 void Polynomial::NewTerm(float c, int e)
 // Add a new term to C(x)
