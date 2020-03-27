@@ -13,7 +13,8 @@ Example: int list[5]: list[0], …, list[4] each contains an integer
 |------|---|:--|---|---|--:|
 | List |   |   |   |   |   |
 
-**用array表示多項式**
+**用array表示多項式**  
+
 Polynomial Representation 1
 private:
 ````
@@ -63,8 +64,42 @@ if (free >= MaxTerms) {
 cerr << “Too many terms in polynomials”<< endl;
 exit();
 }
+
+
 termArray[free].coef = c;  //係數
 termArray[free].exp = e;  //次方
 free++;
 } // end of NewTerm
+````
+
+
+兩個多項式相加
+````
+Polynomial Polynomial:: Add(Polynomial B)
+// return the sum of A(x) ( in *this) and B(x)
+{
+Polynomial C; int a = Start; int b = B.Start; C.Start = free; float c;
+while ((a <= Finish) && (b <= B.Finish))
+switch (compare(termArray[a].exp, termArray[b].exp)) {
+case ‘=‘:
+c = termArray[a].coef +termArray[b].coef;
+if ( c ) NewTerm(c, termArray[a].exp);
+a++; b++;
+break;
+case ‘<‘:
+NewTerm(termArray[b].coef, termArray[b].exp);
+b++;
+case ‘>’:
+NewTerm(termArray[a].coef, termArray[a].exp);
+a++;
+} // end of switch and while
+// add in remaining terms of A(x)
+for (; a<= Finish; a++)
+NewTerm(termArray[a].coef, termArray[a].exp);
+// add in remaining terms of B(x)
+for (; b<= B.Finish; b++)
+NewTerm(termArray[b].coef, termArray[b].exp);
+C.Finish = free – 1;
+return C;
+} // end of Add
 ````
