@@ -109,18 +109,21 @@ Analysis: O(n+m) where n (m) is the number of nonzeros in A(B).
 複雜度分析 因為每個像都要比較，所以complexity是n+m
 
 ---
-**Disadvantages of Representing Polynomials by Arrays**
-What should we do when free is going to exceed MaxTerms?
+
+**Disadvantages of Representing Polynomials by Arrays**  
+What should we do when free is going to exceed MaxTerms?  
 - Either quit or reused the space of unused polynomials. But costly.  
-回收使用:寫一個destractor(解構函式)  告訴電腦這個多項式已經用過了
-有什麼缺點? 可能有些地方已用過，但有些空間仍占用，所以當初填新的方程式的函數就不能從free來寫
-需要重整:把有占用的移到一起(作業系統的memory management；磁碟管理 磁碟重整的概念)
-If use a single array of terms for each polynomial, it may alleviate the above issue but it penalizes the performance of the program due to the need of knowing the size of a polynomial beforehand
+回收使用:寫一個destractor(解構函式)  告訴電腦這個多項式已經用過了  
+有什麼缺點? 可能有些地方已用過，但有些空間仍占用，所以當初填新的方程式的函數就不能從free來寫  
+需要重整:把有占用的移到一起(作業系統的memory management；磁碟管理 磁碟重整的概念)  
+If use a single array of terms for each polynomial, it may alleviate the above issue but it penalizes the performance of the program due to the need of knowing the size of a polynomial beforehand  
+
+---
 
 **Sparse Martrix**  
-一般怎麼表示陣列:宣告一個二維矩陣
-如果在矩陣中，多數的元素並沒有資料，稱此矩陣為sparse matrix 
-只要記錄非0位置的值 Use triple <row, column, value>
+一般怎麼表示陣列:宣告一個二維矩陣  
+如果在矩陣中，多數的元素並沒有資料，稱此矩陣為sparse matrix   
+只要記錄非0位置的值 Use triple <row, column, value>  
 
 **Transpose a Matrix**  
 1. for each row i take element <i, j, value> and store it  
