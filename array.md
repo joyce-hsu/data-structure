@@ -117,6 +117,22 @@ What should we do when free is going to exceed MaxTerms?
 需要重整:把有占用的移到一起(作業系統的memory management；磁碟管理 磁碟重整的概念)
 If use a single array of terms for each polynomial, it may alleviate the above issue but it penalizes the performance of the program due to the need of knowing the size of a polynomial beforehand
 
-**Sparse Martrix**
-怎麼表示陣列:宣告一個二維矩陣
+**Sparse Martrix**  
+一般怎麼表示陣列:宣告一個二維矩陣
+如果在矩陣中，多數的元素並沒有資料，稱此矩陣為sparse matrix 
+只要記錄非0位置的值 Use triple <row, column, value>
+
+**Transpose a Matrix**  
+1. for each row i take element <i, j, value> and store it  
+in element <j, i, value> of the transpose.  
+difficulty: where to put <j, i, value>  
+(0, 0, 15) ====> (0, 0, 15)  
+(0, 3, 22) ====> (3, 0, 22)  
+(0, 5, -15) ====> (5, 0, -15)  
+(1, 1, 11) ====> (1, 1, 11)  
+Move elements down very often.  
+右手邊並沒有一row的大小排列所以要重新排序
+
+2. For all elements in column j, place element <i, j, value> in element <j, i, value>
+
 
