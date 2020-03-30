@@ -232,6 +232,10 @@ return b;
 
 ---
 
+*學資料結構要常常trace code,老師說要做有成就感的工作
+
+---
+
 **Two Dimensional Array Row Major Order**  
 一行存完再存一行(橫)  
 Column Major就是一列存完再存一列(直)  
