@@ -232,3 +232,17 @@ return b;
 
 ---
 
+**Two Dimensional Array Row Major Order**  
+一行存完再存一行(橫)  
+Column Major就是一列存完再存一列(直)  
+會影響到每個element的記憶體位置
+
+**String**  
+- Usually string is represented as a character array.  
+老師問:如何存中文,如何做中文處理,可以修資料檢索
+- General string operations include comparison, string concatenation, copy, insertion, string matching, printing, etc.
+
+**String Matching: Straightforward solution**  
+一一比對不像的話shift(平移)一格
+要達成平移的話要有個變數,去改變比對的t字串的起始位置
+Worst-case complexity is in θ(mn)
