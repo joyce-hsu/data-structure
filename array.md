@@ -106,7 +106,7 @@ return C;
 } // end of Add
 ````
 Analysis: O(n+m) where n (m) is the number of nonzeros in A(B).  
-複雜度分析 因為每個像都要比較，所以complexity是n+m
+複雜度分析 因為每個項都要比較，所以complexity是n+m
 
 ---
 
@@ -138,4 +138,61 @@ Move elements down very often.
 
 2. For all elements in column j, place element <i, j, value> in element <j, i, value>
 
+````
+SparseMatrix SparseMatrix::Transpose()  
+// return the transpose of a (*this)  
+{  
+SparseMatrix b;  
+b.Rows = Cols; // rows in b = columns in a  
+b.Cols = Rows; // columns in b = rows in a  
+b.Terms = Terms; // terms in b = terms(項數) in a  
+if (Terms > 0) // nonzero matrix 
+{  
+int CurrentB = 0;  
+for (int c = 0; c < Cols; c++) // transpose by columns  
+for (int i = 0; i < Terms; i++) // find elements in column c  
+//逐項檢查,但只找column為c的交換row跟col
+if (smArray[i].col == c) {  
+b.smArray[CurrentB].row = c;  
+b.smArray[CurrentB].col = smArray[i].row;  
+b.smArray[CurrentB].value = smArray[i].value;  
+CurrentB++;  //現在b.array的所指到的位置
+}  
+} // end of if (Terms > 0)  
+return b;  
+} // end of transpose
+````
+Time Complexity O(terms * cols)
+兩個for迴圈，外圈跑cols，內圈跑terms  
 
+這個演算法的缺點:效率較差，每次col迴圈，每個term要逐項檢查
+
+`Solution`  
+Determine the number of elements in each column of the original matrix.  
+Determine the starting positions of each row in the transpose matrix.  
+
+![alt 文字](https://github.com/joyce-hsu/data-structure/blob/master/SparseMatrixTranspose.png)
+
+index表示原本的col
+rowsize是原本數字為index之col的個數
+start表示新的陣列的開始位置(用rowsize的和)
+
+**Fast Matrix Transposing**   
+````
+SparseMatrix SparseMatrix::Transpose()
+// The transpose of a(*this) is placed in b and is found in Q(terms + columns) time.
+{
+int *Rows = new int[Cols];
+int *RowStart = new int[Cols];
+SparseMatrix b;
+b.Rows = Cols; b.Cols = Rows; b.Terms = Terms;
+int i;
+if (Terms > 0) // nonzero matrix
+{
+// compute RowSize[i] = number of terms in row i of b
+for ( i = 0; i < Cols; i++) RowSize[i] = 0; // Initialize
+for ( i = 0; i < Terms; I++) RowSize[smArray[i].col]++;
+// RowStart[i] = starting position of row i in b
+RowStart[0] = 0;
+for (i = 1; i < Cols; i++) RowStart[i] = RowStart[i-1] + RowSize[i-1];
+````
