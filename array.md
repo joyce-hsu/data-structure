@@ -232,7 +232,7 @@ return b;
 
 ---
 
-*學資料結構要常常trace code,老師說要做有成就感的工作
+*學資料結構要常常trace code,老師說要做有成就感的工作*
 
 ---
 
@@ -250,4 +250,7 @@ Column Major就是一列存完再存一列(直)
 ![alt 文字](https://github.com/joyce-hsu/data-structure/blob/master/StringMatching.png)  
 一一比對不像的話shift(平移)一格  
 要達成平移的話要有個變數,去改變比對的t字串的起始位置  
-Worst-case complexity is in θ(mn)  
+Worst-case complexity is in θ(mn)   
+
+**KMP**  
+更聰明的shift,一次可以shift多個位元  
