@@ -165,7 +165,11 @@ return b;
 Time Complexity O(terms * cols)
 兩個for迴圈，外圈跑cols，內圈跑terms  
 
-這個演算法的缺點:效率較差，每次col迴圈，每個term要逐項檢查
+這個演算法的缺點:效率較差，每次col迴圈，每個term要逐項檢查  
+如果不是Sparse Martrix複雜度就會變成O(columns * columns * rows)  
+(terms = columns * rows)
+
+---
 
 `Solution`  
 Determine the number of elements in each column of the original matrix.  
@@ -173,9 +177,9 @@ Determine the starting positions of each row in the transpose matrix.
 
 ![alt 文字](https://github.com/joyce-hsu/data-structure/blob/master/SparseMatrixTranspose.png)
 
-index表示原本的col
-rowsize是原本數字為index之col的個數
-start表示新的陣列的開始位置(用rowsize的和)
+index 表示原本的col
+rowsize 是原本數字為index之col有幾個
+start 表示新的陣列的開始位置(用前幾項rowsize的和或rowsize+rowstart)
 
 **Fast Matrix Transposing**   
 ````
@@ -190,9 +194,41 @@ int i;
 if (Terms > 0) // nonzero matrix
 {
 // compute RowSize[i] = number of terms in row i of b
-for ( i = 0; i < Cols; i++) RowSize[i] = 0; // Initialize
-for ( i = 0; i < Terms; I++) RowSize[smArray[i].col]++;
+for ( i = 0; i < Cols; i++) RowSize[i] = 0; // Initialize；複雜度:O(columns)
+
+for ( i = 0; i < Terms; i++) RowSize[smArray[i].col]++;
 // RowStart[i] = starting position of row i in b
+// 此迴圈在做RowStart[]的計數；複雜度:O(terms)
+// smArray[0].col = 0 -> RowSize[0]++
+// smArray[1].col = 4 -> RowSize[4]++
+// smArray[2].col = 1 -> RowSize[1]++
+// smArray[3].col = 1 -> RowSize[1]++ (此時RowSize[1] = 2)
+
+
+
 RowStart[0] = 0;
 for (i = 1; i < Cols; i++) RowStart[i] = RowStart[i-1] + RowSize[i-1];
+// 算出RowStart；複雜度:O(columns-1)
+
+//開始transpore；複雜度:O(terms)
+for (i =0; i < Terms; i++) // move from a to b
+{
+int j = RowStart[smArray[i].col];
+// 對每個term檢查col
+b.smArray[j].row = smArray[i].col;
+b.smArray[j].col = smArray[i].row;
+b.smArray[j].value = smArray[i].value;
+RowStart[smArray[i].col]++;  //進行一次迴圈後原本col為0的起始位置從0移到1
+} // end of for
+} // end of if
+delete [] RowSize;
+delete [] RowStart;
+return b;
+} // end of FastTranspose
 ````
+
+如果不是Sparse Martrix複雜度就會變成O(columns * rows)  
+(terms = columns * rows)
+
+---
+
