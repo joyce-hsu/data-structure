@@ -243,6 +243,7 @@ Column Major就是一列存完再存一列(直)
 - General string operations include comparison, string concatenation, copy, insertion, string matching, printing, etc.
 
 **String Matching: Straightforward solution**  
-一一比對不像的話shift(平移)一格
-要達成平移的話要有個變數,去改變比對的t字串的起始位置
-Worst-case complexity is in θ(mn)
+![alt 文字](https://github.com/joyce-hsu/data-structure/blob/master/StringMatching.png)  
+一一比對不像的話shift(平移)一格  
+要達成平移的話要有個變數,去改變比對的t字串的起始位置  
+Worst-case complexity is in θ(mn)  
