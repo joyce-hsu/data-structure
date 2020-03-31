@@ -264,7 +264,7 @@ Worst-case complexity is in θ(mn)
 
 Failure Function(Π)告訴我們index=5對應的a往前看3格  
 跟pattern從前往後看3格是一樣的  
-Failure Function(Π)是根據pattern產生出來的array 
+Failure Function(Π)是根據pattern產生出來的array  
 
 ````
 Compute-Prefix-Function (p)
@@ -310,3 +310,18 @@ q = 0 //number of characters matched
 [圖片來源](https://www.javatpoint.com/daa-knuth-morris-pratt-algorithm)
 
 [參考影片](https://www.youtube.com/watch?v=GTJr8OvyEVQ)
+
+複雜度 O(m+n):
+O(m) for computing function f   
+O(n) for searching P  
+
+---
+
+**array小總結**
+1. 有index有velue  
+2. array的應用:多項式加法  
+3. 不同的array表示方法複雜度不同
+4. 矩陣的轉換
+5. sparse matrix更有效的表示方法
+6. array常被用來存成string
+7. string mstching
