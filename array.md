@@ -324,4 +324,4 @@ O(n) for searching P
 4. 矩陣的轉換
 5. sparse matrix更有效的表示方法
 6. array常被用來存成string
-7. string mstching
+7. string matching
