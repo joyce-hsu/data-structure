@@ -254,3 +254,30 @@ Worst-case complexity is in θ(mn)
 
 **KMP**  
 更聰明的shift,一次可以shift多個位元  
+
+1. 把Failure Function的value找出來  
+
+|     index (q)     | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
+|-------------------|---|:--|---|---|---|---|--:|
+|    pattern (p)    | a | b | a | b | a | c | a |
+|Failure Function(Π)| 0 | 0 | 1 | 2 | 3 | 0 | 1 |
+
+Failure Function(Π)告訴我們index=5對應的a往前看3格  
+跟pattern從前往後看3格是一樣的  
+Failure Function(Π)是根據pattern產生出來的array 
+
+````
+Compute-Prefix-Function (p)
+m = length[p]   //’p’ pattern to be matched
+Π[1] = 0
+k = 0
+    for q = 2 to m  //q 介於 2 到 m(length[p])  
+        do while k > 0 and p[k+1] != p[q]  
+            do k = Π[k]
+          If p[k+1] = p[q]
+            then k = k+1
+          Π[q] = k
+return Π
+````
+
+![參考影片](https://www.youtube.com/watch?v=GTJr8OvyEVQ)
