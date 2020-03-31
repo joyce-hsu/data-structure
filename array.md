@@ -271,12 +271,14 @@ Compute-Prefix-Function (p)
 m = length[p]   //’p’ pattern to be matched
 Π[1] = 0
 k = 0
-    for q = 2 to m  //q 介於 2 到 m(length[p])  
+    for q = 2 to m  //q 從 2 到 m(length[p])  
         do while k > 0 and p[k+1] != p[q]  
-            do k = Π[k]
-          If p[k+1] = p[q]
-            then k = k+1
-          Π[q] = k
+            do k = Π[k]  //如果不一樣就看前一項的k值,讓k = Π[k]  
+        
+        If p[k+1] = p[q]
+            then k = k+1  //如果一樣k就+1並變為自己的Π[q]值
+        
+        Π[q] = k
 return Π
 ````
 
