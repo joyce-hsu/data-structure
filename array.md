@@ -271,9 +271,10 @@ Compute-Prefix-Function (p)
 m = length[p]   //’p’ pattern to be matched
 Π[1] = 0
 k = 0
-    for q = 2 to m  //q 從 2 到 m(length[p])  
+
+    for q = 2 to m  //q 從 2 到 m(length[p]),每次一定+1 
         do while k > 0 and p[k+1] != p[q]  
-            do k = Π[k]  //如果不一樣就看前一項的k值,讓k = Π[k]  
+            do k = Π[k]  //如果不一樣就看前一項的k值,讓k = Π[k] 然後再檢查一次是否一樣
         
         If p[k+1] = p[q]
             then k = k+1  //如果一樣k就+1並變為自己的Π[q]值
@@ -281,5 +282,31 @@ k = 0
         Π[q] = k
 return Π
 ````
+
+2. 利用Failure Function來比較  
+
+````
+KMP-Matcher(S,p)
+n = length[S]
+m = length[p]
+Π = Compute-Prefix-Function(p)
+q = 0 //number of characters matched
+
+    for i = 1 to n //scan S from left to right
+        do while q > 0 and p[q+1] != S[i]
+            do q = Π[q] //next character does not match
+    
+    if p[q+1] = S[i]
+        then q = q + 1 //next character matches
+
+    if q = m //is all of p matched?
+        then print “Pattern occurs with shift” i – m
+
+    q = Π[q] // look for the next match
+````
+
+![圖解](https://github.com/joyce-hsu/data-structure/blob/master/kmp1.png)
+
+[圖片來源](https://www.javatpoint.com/daa-knuth-morris-pratt-algorithm)
 
 [參考影片](https://www.youtube.com/watch?v=GTJr8OvyEVQ)
