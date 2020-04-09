@@ -304,6 +304,14 @@ q = 0 //number of characters matched
 
     q = Π[q] // look for the next match
 ````
+![圖解](https://github.com/joyce-hsu/data-structure/blob/master/kmp2.png)
+起初比對不同時(j = 0)，就將p往後移動一格，以p0與s(i+1)比較   
+當相同時s與p都往後一格繼續比較(以綠色代表比較結果皆為相同)  
+倘若比到si != pj (紅鶴色與紅色表示不一樣)  
+就從pj往前找一格，看對應的Failure Function是多少  
+下次就從 si 和 p[f(j–1)+1] 來比較  
+Failure Function用來告訴我們這格往前幾格和P陣列開頭相同(藍色表示與開頭相同之處)  
+
 
 ![圖解](https://github.com/joyce-hsu/data-structure/blob/master/kmp1.png)
 
