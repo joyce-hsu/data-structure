@@ -1,4 +1,4 @@
-###Templates in C++
+### Templates in C++
 
 - Template function in C++ makes it easier to reuse classes and functions.  
 - A template can be viewed as a variable that can be instantiated to any data type, irrespective of whether this data type is a fundamental C++ type or a user-defined type.
@@ -27,7 +27,7 @@ KeyType* Delete(KeyType& );
 // else remove and return a pointer to the top element of the stack.
 ````
 
-###Implementation of Stack by Array
+### Implementation of Stack by Array
 
 stack是常見的data structure  
 可以用array來 implement  
@@ -83,7 +83,7 @@ KeyType* Stack<KeyType>::Delete(KeyType& x)
 }
 ````
   
-###Queue: a First-In-First-Out (FIFO) list
+### Queue: a First-In-First-Out (FIFO) list
 
   
 ````
