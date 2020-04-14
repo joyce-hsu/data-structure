@@ -3,9 +3,12 @@
 - Template function in C++ makes it easier to reuse classes and functions.  
 - A template can be viewed as a variable that can be instantiated to any data type, irrespective of whether this data type is a fundamental C++ type or a user-defined type.
 
+---
+
 ### Stack: a Last-In-First-Out (LIFO) list  
 
-pop: take out an element
+pop: take out an element  
+**abstract data type for stack**
 ````
 Template <class KeyType> 
 class Stack { 
@@ -27,7 +30,7 @@ KeyType* Delete(KeyType& );
 // else remove and return a pointer to the top element of the stack.
 ````
 
-### Implementation of Stack by Array
+**Implementation of Stack by Array**
 
 stack是常見的data structure  
 可以用array來 implement(實行)  
@@ -87,9 +90,11 @@ KeyType* Stack<KeyType>::Delete(KeyType& x)
 |:--:|:--:|:--:|
 |queue|add|deiete|
 
+---
+
 ### Queue: a First-In-First-Out (FIFO) list
 
-  
+**Abstract data type of queue**
 ````
 Template <class KeyType>
 class Queue
@@ -111,3 +116,94 @@ KeyType* Delete(KeyType&);
 // else remove the item at the front of the queue and return a pointer to it
 };
   ````
+**Implementation 1: using array**  
+````
+Private: 
+int front,rear;  
+KeyType *queue;  
+int MaxSize;  
+Template<class KeyType>  
+Queue<KeyType>::Queue(int MaxQueueSize):MaxSize(MaxQueueSize) { 
+queue=new KeyType[MaxSize];  
+front=rear=-1;  
+}  
+
+template<classs KeyType>  
+inline Boolean Queue<KeyType>::IsFull() {  
+if (rear==MaxSize-1) 
+    return TRUE;  
+else 
+    return FALSE;  
+}  
+
+template<classs KeyType>  
+inline Boolean Stack<KeyType>::IsEmpty() {  
+if (front==rear) 
+    return TRUE;  
+else 
+    return FALSE;  
+}
+````
+
+**Add to a queue**
+````
+Template <class KeyType>  
+void Queue<KeyType>::Add(const KeyType& x) {
+/* add an item to the global stack */ 
+if (IsFull()) 
+    QueueFull( ); //判斷是否為滿
+else 
+    queue[++rear]=x;  
+ }
+````
+
+**Delete from a queue**
+````
+Template <class KeyType>  
+KeyType* Queue<KeyType>::Delete() {
+/* return the top element from the stack */ 
+if (IsEmpty()) { 
+    QueueEmpty( ); /* returns and error key */ 
+    return 0; 
+} 
+x=queue[++front]; //front++之後記錄資料
+return x;  
+}
+````
+
+假設一個Queue已滿，若刪掉第一個位置，因為最後一個位置仍有值  
+這時候QueueFull()會判斷為full  
+所以移除持要空間搬移data movement  
+或考慮QueueFull()的判斷法  
+又或者寫其他的判斷法補足  
+
+**Implementation 2: regard an array as a circular queue**
+
+
+**Add to a circular queue**  
+````
+Template<class KeyType> 
+void Queue<KeyType>::Add(const KeyType& x) { 
+int newrear=(rear+1)%MaxSize;  
+if (front==newrear) 
+    QueueFull(); 
+else 
+    queue[rear=newrear]=x;  
+}
+````
+
+**Delete from a circular queue**
+````
+Template<class KeyType> 
+KeyType* Queue<KeyType>::Delete(KeyType& x) {  
+/* remove front element from the queue */  
+if (front == rear) {  
+    QueueEmpty(); 
+    return 0; 
+} 
+front = (front+1) % MaxSize; 
+x=queue[front]; 
+return &x; 
+}
+````
+
