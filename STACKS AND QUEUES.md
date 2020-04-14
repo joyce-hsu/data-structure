@@ -3,7 +3,7 @@
 - Template function in C++ makes it easier to reuse classes and functions.  
 - A template can be viewed as a variable that can be instantiated to any data type, irrespective of whether this data type is a fundamental C++ type or a user-defined type.
 
-###Stack: a Last-In-First-Out (LIFO) list  
+### Stack: a Last-In-First-Out (LIFO) list  
 
 pop: take out an element
 ````
