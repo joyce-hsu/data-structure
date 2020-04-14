@@ -7,7 +7,7 @@
 
 ### Stack: a Last-In-First-Out (LIFO) list  
 
-![stack](https://github.com/joyce-hsu/data-structure/blob/master/stack.png)
+![stack](https://github.com/joyce-hsu/data-structure/blob/master/stack.png)  
 
 pop: take out an element  
 **abstract data type for stack**
@@ -96,7 +96,7 @@ KeyType* Stack<KeyType>::Delete(KeyType& x)
 
 ### Queue: a First-In-First-Out (FIFO) list
 
-![queue](https://github.com/joyce-hsu/data-structure/blob/master/queue.png)
+![queue](https://github.com/joyce-hsu/data-structure/blob/master/queue.png)  
 
 **Abstract data type of queue**
 ````
@@ -182,14 +182,14 @@ return x;
 又或者寫其他的判斷法補足  
 
 **Implementation 2: regard an array as a circular queue**
-![circular queue1](https://github.com/joyce-hsu/data-structure/blob/master/circular-queue-1.png)
+![circular queue1](https://github.com/joyce-hsu/data-structure/blob/master/circular-queue-1.png)  
 
 可以填滿嗎?
 為什麼不能填滿呢?  
 填滿之後front = 0 rear = 0  
 就無法分辨 Queue 滿的 或 空的
 
-![circular queue2](https://github.com/joyce-hsu/data-structure/blob/master/circular-queue-2.png)
+![circular queue2](https://github.com/joyce-hsu/data-structure/blob/master/circular-queue-2.png)  
 
 左圖變成右圖:先刪掉 J1~J4,再加入 J6~J9  
 
@@ -223,10 +223,14 @@ return &x;
 ---
 
 ### A Mazing Problem  
-![迷宮](https://github.com/joyce-hsu/data-structure/blob/master/maze.png)
+
+![迷宮](https://github.com/joyce-hsu/data-structure/blob/master/maze.png)  
+
 **a possible representation**  
-![方位](https://github.com/joyce-hsu/data-structure/blob/master/dir.png)
-**a possible implementation**  
+
+![方位](https://github.com/joyce-hsu/data-structure/blob/master/dir.png)  
+
+**a possible implementation**   
 ````
 typedef struct { 
     int vert; 
@@ -238,7 +242,7 @@ offsets move[8]; /*array of moves for each direction*/
 next_row = row + move[dir].vert; 
 next_col = col + move[dir].horiz;
 ````
-![方位表](https://github.com/joyce-hsu/data-structure/blob/master/dir-table.png)
+![方位表](https://github.com/joyce-hsu/data-structure/blob/master/dir-table.png)  
 
 **Use stack to keep pass history**  
 因為可能有走進死胡同要回頭找路的情況  
