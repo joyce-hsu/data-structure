@@ -30,7 +30,7 @@ KeyType* Delete(KeyType& );
 ### Implementation of Stack by Array
 
 stack是常見的data structure  
-可以用array來 implement  
+可以用array來 implement(實行)  
 但不是唯一的方法  
 ````
 Private: 
