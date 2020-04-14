@@ -183,17 +183,25 @@ return x;
 
 **Implementation 2: regard an array as a circular queue**
 ![circular queue1](https://github.com/joyce-hsu/data-structure/blob/master/circular-queue-1.png)
+
+可以填滿嗎?
+為什麼不能填滿呢?  
+填滿之後front = 0 rear = 0  
+就無法分辨 Queue 滿的 或 空的
+
 ![circular queue2](https://github.com/joyce-hsu/data-structure/blob/master/circular-queue-2.png)
+
+左圖變成右圖:先刪掉 J1~J4,再加入 J6~J9  
 
 **Add to a circular queue**  
 ````
 Template<class KeyType> 
 void Queue<KeyType>::Add(const KeyType& x) { 
-int newrear=(rear+1)%MaxSize;  
+int newrear=(rear+1)%MaxSize; //MaxSize = 總共的格數 
 if (front==newrear) 
     QueueFull(); 
 else 
-    queue[rear=newrear]=x;  
+    queue[rear=newrear]=x;  //可分為兩個指令rear=newrear，queue[rear]=x;
 }
 ````
 
@@ -203,7 +211,7 @@ Template<class KeyType>
 KeyType* Queue<KeyType>::Delete(KeyType& x) {  
 /* remove front element from the queue */  
 if (front == rear) {  
-    QueueEmpty(); 
+    QueueEmpty(); //先判斷是否為空，空的話就跳過
     return 0; 
 } 
 front = (front+1) % MaxSize; 
@@ -212,3 +220,97 @@ return &x;
 }
 ````
 
+---
+
+### A Mazing Problem  
+![迷宮](https://github.com/joyce-hsu/data-structure/blob/master/maze.png)
+**a possible representation**  
+![方位](https://github.com/joyce-hsu/data-structure/blob/master/dir.png)
+**a possible implementation**  
+````
+typedef struct { 
+    int vert; 
+    int horiz; 
+} offsets; 
+
+offsets move[8]; /*array of moves for each direction*/
+
+next_row = row + move[dir].vert; 
+next_col = col + move[dir].horiz;
+````
+![方位表](https://github.com/joyce-hsu/data-structure/blob/master/dir-table.png)
+
+**Use stack to keep pass history**  
+因為可能有走進死胡同要回頭找路的情況  
+故需要Last-In-First-Out的stack幫忙記路  
+````
+typedef struct {  
+    int row; 
+    int col; 
+    int dir; 
+} item;  
+item stack[m*p];  //一個迷宮共m*p格
+````
+Program 3.15
+````
+initialize stack to the maze entrance coordinates and direction east ;
+while (stack is not empty){
+    (i, j, dir) = coordinates and direction deleted from top of stack ;
+    while (there are more moves){
+        (g, h) = coordinates of next move ;
+        if ((g == m) && (h == p)) 
+            success ;
+            
+         if ((!maze[g][h]) // legal move  
+               && (!mark[g][h]) // haven’t been here before {
+             mark[g][h] = 1 ;
+             dir = next direction to try ;
+             add (i, j, dir) to top of stack ;
+             i = g ; j = h ; dir = north ;
+         }
+     }
+}
+cout << “not path found” << endl ;
+````
+
+Program 3.16
+````
+void path (int m, int p)
+/*Output a path (if any) in the maze;
+maze[0][i] = maze[m+1][i] = maze[j][0] = maze[j][p+1] = 1, 0<= i <= p+1, 0<= j <= m+1.*/
+// 在迷宮外圍一圈1，這樣就不用判斷邊界，因為遇到1會直接判斷為死路
+{
+//start at (1,1)
+mark[1][1] = 1 ;
+Stack<items> stack(m*p) ;
+items temp ;
+temp.x = 1 ; temp.y = 1 ; temp.dir = E ;
+stack.Add(temp) ;
+
+while(!stack.IsEmpty()) // stack not empty
+{
+    temp = *stack.Delete(temp) ; // unstack
+    int i = temp.x ; int j = temp.y ; int d = temp.dir ;
+    while(d < 8) // move forward 
+        {
+        int g = i + move[d].a ; int h = j + move[d].b ;
+        if ((g == m) && (h == p)) { // reached exit
+            //output path
+            cout << stack 
+            cout << i << “ “ << j << endl ; // last two squares on the path
+            cout << m << “ “ << p << endl ;
+            return ;
+            }
+        if ((!maze[g][h]) && (!mark[g][h])) { // new position
+            mark[g][h] = 1 ;
+            temp.x = i ; temp.y = j ; temp.dir = d+1 ;
+            stack.Add(temp) ; // stack it
+            i = g ; j = h ; d = N ; // move to (g, h)
+            }
+        else 
+            d++ ; // try next direction
+        }
+}
+cout << “no path in maze “ << endl ;
+}
+````
