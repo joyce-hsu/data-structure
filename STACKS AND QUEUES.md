@@ -7,6 +7,8 @@
 
 ### Stack: a Last-In-First-Out (LIFO) list  
 
+![stack](https://github.com/joyce-hsu/data-structure/blob/master/stack.png)
+
 pop: take out an element  
 **abstract data type for stack**
 ````
@@ -94,6 +96,8 @@ KeyType* Stack<KeyType>::Delete(KeyType& x)
 
 ### Queue: a First-In-First-Out (FIFO) list
 
+![queue](https://github.com/joyce-hsu/data-structure/blob/master/queue.png)
+
 **Abstract data type of queue**
 ````
 Template <class KeyType>
@@ -178,7 +182,8 @@ return x;
 又或者寫其他的判斷法補足  
 
 **Implementation 2: regard an array as a circular queue**
-
+![circular queue1](https://github.com/joyce-hsu/data-structure/blob/master/circular-queue-1.png)
+![circular queue2](https://github.com/joyce-hsu/data-structure/blob/master/circular-queue-2.png)
 
 **Add to a circular queue**  
 ````
