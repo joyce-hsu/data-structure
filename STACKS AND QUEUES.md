@@ -82,7 +82,11 @@ KeyType* Stack<KeyType>::Delete(KeyType& x)
   return &x; 
 }
 ````
-  
+
+|stack|push|pop|
+|:--:|:--:|:--:|
+|queue|add|deiete|
+
 ### Queue: a First-In-First-Out (FIFO) list
 
   
