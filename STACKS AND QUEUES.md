@@ -338,4 +338,39 @@ precedence rule + associative rule
 |(a / (b - c + d)) * (e-a) * c|abc-d+/ea-* c * |
 |a / b - c + d * e - a * c|ab/c-de* ac*-+ |
 
+Postfix: no parentheses, no precedence  
+
+![例一]()  
+
+**Goal: infix --> postfix**  
+Assumptions:  
+operators: +, -, * , /, %  
+operands:  single digit integer  
+
+*方法一*  
+(1) Fully parenthesize expression  全部的括號都標示出來
+a / b - c + d * e - a * c -->  ((((a / b) - c) + (d * e)) - a * c))  
+
+(2) All operators replace their corresponding right parentheses.  
+所有的運算子找到對應的右括號  
+![如圖]()  
+(3) Delete all parentheses.  將右括號以運算符號取代並去掉左括號
+    ab/c-de*+ac*-  
+    
+    ~但此方法有兩個步驟~  
+    
+*方法二*  
+訂出運算符號的優先順序  
+|Priority|Operator|
+|:---:|:---:|
+|1|Unary minus(例如負號), !|
+|2|* , / , % |
+|3|+ , -|
+|4|< , <= , >= ,>|
+|5|== , != |
+|6|&& |
+|7||| |
+
+![例二]()  
+
 
