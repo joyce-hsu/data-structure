@@ -357,7 +357,7 @@ a / b - c + d * e - a * c -->  ((((a / b) - c) + (d * e)) - a * c))
 (3) Delete all parentheses.  將右括號以運算符號取代並去掉左括號
     ab/c-de*+ac*-  
     
- > 但此方法有兩個步驟 
+> 但此方法有兩個步驟 
     
 *方法二*  
 訂出運算符號的優先順序  
@@ -369,7 +369,14 @@ a / b - c + d * e - a * c -->  ((((a / b) - c) + (d * e)) - a * c))
 |4|< , <= , >= ,>|
 |5|== , != |
 |6| && |
-|7| \|\| |
+|7| \|\| |  
+
+> 比較特別的是左括號"("優先權最低，但遇到右括號")"時優先權變最高  
+“(“ has low in-stack precedence (i.e., 8), and high incoming precedence (i.e.,0). isp(“(“)=8, pop up when “) is coming. icp(“(“))=0, always push operators.  
+
+> Operators are taken out of the stack as long as their in-stack precedence is higher than or equal to the incoming precedence of the new operator,  
+(i.e., pop y if isp(y)<=icp(x) )  
+特別注意這裡是higher priority 數字反而是最小的
 
 ![例二]()  
 
