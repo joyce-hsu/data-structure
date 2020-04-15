@@ -175,7 +175,7 @@ Time Complexity O(terms * cols)
 Determine the number of elements in each column of the original matrix.  
 Determine the starting positions of each row in the transpose matrix.  
 
-![alt 文字](https://github.com/joyce-hsu/data-structure/blob/master/SparseMatrixTranspose.png)
+![alt 文字](https://github.com/joyce-hsu/data-structure/blob/master/sparsematrixtranspose.png)
 
 index 表示原本的col
 rowsize 是原本數字為index之col有幾個
@@ -247,7 +247,7 @@ Column Major就是一列存完再存一列(直)
 - General string operations include comparison, string concatenation, copy, insertion, string matching, printing, etc.
 
 **String Matching: Straightforward solution**  
-![alt 文字](https://github.com/joyce-hsu/data-structure/blob/master/StringMatching.png)  
+![alt 文字](https://github.com/joyce-hsu/data-structure/blob/master/stringmatching.png)  
 一一比對不像的話shift(平移)一格  
 要達成平移的話要有個變數,去改變比對的t字串的起始位置  
 Worst-case complexity is in θ(mn)   
