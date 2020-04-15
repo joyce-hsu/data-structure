@@ -191,7 +191,7 @@ return x;
 
 ![circular queue2](https://github.com/joyce-hsu/data-structure/blob/master/circular-queue-2.png)  
 
-左圖變成右圖:先刪掉 J1~J4,再加入 J6~J9  
+左圖變成右圖:先刪掉 J1-J4,再加入 J6-J9  
 
 **Add to a circular queue**  
 ````
@@ -369,7 +369,7 @@ a / b - c + d * e - a * c -->  ((((a / b) - c) + (d * e)) - a * c))
 |4|< , <= , >= ,>|
 |5|== , != |
 |6| && |
-|7| || |
+|7| '||' |
 
 ![例二]()  
 
