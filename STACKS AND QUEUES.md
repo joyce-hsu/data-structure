@@ -336,4 +336,6 @@ precedence rule + associative rule
 |(1 + 2) * 7 |12+7 * |
 |a * b / c |ab * c/ |
 |(a / (b - c + d)) * (e-a) * c|abc-d+/ea-* c * |
-|a / b - c + d * e - a * c|ab/c-de*/ac*-+ |
+|a / b - c + d * e - a * c|ab/c-de* ac*-+ |
+
+
