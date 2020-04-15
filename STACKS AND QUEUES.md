@@ -318,3 +318,22 @@ while(!stack.IsEmpty()) // stack not empty
 cout << “no path in maze “ << endl ;
 }
 ````
+
+---
+
+### Evaluation of Expressions  
+
+How to generate the machine instructions corresponding to a given expression?
+如何生成出所給表達式相對應的機器指令？  
+precedence rule + associative rule  
+要遵守括號優先和四則運算先乘除後加減  
+
+|user|compiler|
+|Infix|Postfix|
+|:---:|:---:|
+|2 + 3 * 4|234*+ |
+|a * b+5|ab * 5+ |
+|(1+2) * 7 |12+7 * |
+|a * b/c |ab * c/ |
+|(a/(b-c+d)) * (e-a) * c|abc-d+/ea-* c * |
+|a/b-c+d * e-a * c|ab/c-de * ac*-+ |
