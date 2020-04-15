@@ -340,7 +340,7 @@ precedence rule + associative rule
 
 Postfix: no parentheses, no precedence  
 
-![例一]()  
+![例一](https://github.com/joyce-hsu/data-structure/blob/master/postfix%20evaluation.png)  
 
 **Goal: infix --> postfix**  
 Assumptions:  
@@ -353,7 +353,7 @@ a / b - c + d * e - a * c -->  ((((a / b) - c) + (d * e)) - a * c))
 
 (2) All operators replace their corresponding right parentheses.  
 所有的運算子找到對應的右括號  
-![如圖]()  
+![如圖](https://github.com/joyce-hsu/data-structure/blob/master/corresponding%20right%20parentheses.png)  
 (3) Delete all parentheses.  將右括號以運算符號取代並去掉左括號
     ab/c-de*+ac*-  
     
@@ -376,8 +376,59 @@ a / b - c + d * e - a * c -->  ((((a / b) - c) + (d * e)) - a * c))
 
 > Operators are taken out of the stack as long as their in-stack precedence is higher than or equal to the incoming precedence of the new operator,  
 (i.e., pop y if isp(y)<=icp(x) )  
-特別注意這裡是higher priority 數字反而是最小的
+特別注意這裡是higher priority 數字反而是最小的  
+  
+看到非運算符號(例如數字)，直接popout  
+遇到新的運算符號就要比較isp跟icp  
+isp: in stack priority  icp: incoming priority
 
-![例二]()  
+![例1](https://github.com/joyce-hsu/data-structure/blob/master/evaluation1.png)  
+小紅圈處: isp(+) > icp(\*), 3 >= 2, push “\*”  
+eoc: end of string 通常設定遇到"#"表示整個運算式結束  
 
 
+![例2](https://github.com/joyce-hsu/data-structure/blob/master/evaluation2.png)  
+小紅圈處: isp(\*) <= icp(+), 2 <= 3, pop “\*”  
+
+![例3](https://github.com/joyce-hsu/data-structure/blob/master/evaluation3.png)  
+match ) : 看到")"就pop out所有運算子，直到"("被pop out  
+\*1 = \*2  兩個乘號的 isp icp 是相同的所以pop out 在 stack 裡的 \*1  
+isp(\*1) <= icp(\*2), 2 <= 2, pop “\*1” 
+
+Program 3.19
+````
+void postfix (expression e)
+//Output the postfix form of the infix expression e. 
+//NextToken and stack are as in function eval (Program 3.18). 
+//It is assumed that the last token in e is ‘#’. Also, ‘#’ is used at the bottom of the stack
+{
+    Stack<token> stack ; // initialize stack
+    token y ;
+    stack.Add(‘#’) ;
+    for (token x = NextToken(e) ; x != ‘#’ ; x = NextToken(e))
+    {
+        if (x is an operand) 
+            cout << x ;
+        else if (x == ‘)’) // unstack until ‘(‘
+                 for (y = *stack.Delete(y) ; y != ‘(‘ ; y = *stack.Delete(y)) 
+                     cout << y ;
+             else { // x is an operator
+                 for(y = *stack.Delete(y) ; isp(y) <= icp(x) ; y = *stack.Delete(y)) 
+                     cout << y ;
+                     stack.Add(y) ; // restack the last y that was unstacked
+                     stack.Add(x) ;
+                  }
+    } //end of expression ; empty stack
+    while (!stack.IsEmpty()) cout << *stack.Delete(y) ;
+} // end of postfix
+````
+
+---
+
+### Multiple stacks and queues   
+![Two stacks1](https://github.com/joyce-hsu/data-structure/blob/master/two%20stacks1.png)
+![Two stacks2](https://github.com/joyce-hsu/data-structure/blob/master/two%20stacks2.png)
+
+重點是要知道 stack != array  
+array是index和value的pair  
+而 stack是一種集合,要遵守FILO準則
