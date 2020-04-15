@@ -330,8 +330,7 @@ precedence rule + associative rule
 
 |user|compiler|
 |:---:|:---:|
-|Infix|Postfix|
-|:---:|:---:|
+|**Infix**|**Postfix**|
 |2 + 3 * 4|234*+ |
 |a * b + 5|ab * 5+ |
 |(1 + 2) * 7 |12+7 * |
