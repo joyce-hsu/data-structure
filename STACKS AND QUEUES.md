@@ -332,8 +332,8 @@ precedence rule + associative rule
 |Infix|Postfix|
 |:---:|:---:|
 |2 + 3 * 4|234*+ |
-|a * b+5|ab * 5+ |
-|(1+2) * 7 |12+7 * |
-|a * b/c |ab * c/ |
-|(a/(b-c+d)) * (e-a) * c|abc-d+/ea-* c * |
-|a/b-c+d * e-a * c|ab/c-de * ac*-+ |
+|a * b + 5|ab * 5+ |
+|(1 + 2) * 7 |12+7 * |
+|a * b / c |ab * c/ |
+|(a / (b - c + d)) * (e-a) * c|abc-d+/ea-* c * |
+|a / b - c + d * e - a * c|ab/c-de*/ac*-+ |
