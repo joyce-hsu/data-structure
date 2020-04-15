@@ -329,6 +329,7 @@ precedence rule + associative rule
 要遵守括號優先和四則運算先乘除後加減  
 
 |user|compiler|
+|:---:|:---:|
 |Infix|Postfix|
 |:---:|:---:|
 |2 + 3 * 4|234*+ |
