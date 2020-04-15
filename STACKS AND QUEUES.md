@@ -423,6 +423,8 @@ void postfix (expression e)
 } // end of postfix
 ````
 
+[**convert infix to prefix**](https://www.youtube.com/watch?v=UK16ttNfGSk)
+
 ---
 
 ### Multiple stacks and queues   
