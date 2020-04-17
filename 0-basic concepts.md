@@ -54,7 +54,7 @@ integer: +, -, *, /, %, =, ==, atoi()
 **修飾符** 
 資料欄位能不能被其他使用者使用
   
-class類別-有點像struct
+class類別-有點像struct  
 public公開:class裡的member(資料或成員函式)可以被所有函式存取，包含自己類別內、別的類別、甚是不屬於類別的一般函式  
 private私有:只提供給相同class中的member，其他外部變數外部成員都無法使用  
 protected保護:伴隨繼承概念而來，可以被相同或衍伸出來的類別使用  
