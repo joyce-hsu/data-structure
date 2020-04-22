@@ -101,3 +101,12 @@ pointer指定的順序不可以相反
 想要delete的node可以存進另一個linked lists  
 未來需要node時直接從裡面拿  
 省去和memory要空間的動作
+
+---
+
+**List Iterator**  
+- A list iterator is an object that is used to traverse all the elements of a container class.
+- ListIterator<Type> is delcared as a friend of both List<Type> and ListNode<Type>.
+- A ListIterator<Type> object is initialized with the name of a List<Type> object l with which it will be associated.
+- The ListIterator<Type> object contains a private data member current of type ListNode<Type> *. At all times, current points to a node of list *l*.
+- The ListIterator<Type> object defines public member functions NotNull(), NextNotNull(), First(), and Next() to perform various tests on and to retrieve elements of *l*.
