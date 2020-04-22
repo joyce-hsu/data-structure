@@ -126,8 +126,8 @@ template <class Type> class ListNode {
         ListNode *link;
 };
 
-Template <class Type> class List {  //**這部分是被抽出的**
-    friend class ListIterator <Type>;  //**所以要宣告friend class代表可以給別人用**
+Template <class Type> class List {  
+    friend class ListIterator <Type>;  //**要宣告friend class代表可以給別人用**
     public:
         List() {first = 0;};
         // List manipulation operations
@@ -136,4 +136,121 @@ Template <class Type> class List {  //**這部分是被抽出的**
     private:
         ListNode <Type> *first;
 };
+template <class Type> class ListIterator {  //**這部分是被抽出的**
+    public:
+        ListIterator(const List<Type> &l): list(l), current(l.first) {};
+        Boolean NotNull();
+        Boolean NextNotNull();
+        Type * First();
+        Type * Next();
+    Private:
+        const List<Type>& list; // refers to an existing list
+        ListNode<Type>* current; // points to a node in list
+};
 ````
+
+---
+
+**Program 4.11 Attaching A Node To The End Of A List**  
+````
+Template <class Type>
+Void List<Type>::Attach(Type k)
+{
+ListNode<Type>*newnode = new ListNode<Type>(k);
+if (first == 0) first = last =newnode;
+else {
+    last->link = newnode;
+    last = newnode;
+    }
+};
+````  
+
+**Program 4.12 Inverting a list**  
+````
+Template <class Type>
+Void List<Type>:: Invert()
+// A chain x is inverted so that if x=(a1,…an)
+//then, after execution, x=(an,…,a1)
+{
+ListNode<Type>*p = first,*q=0; //q trails p
+while (p)
+    {
+    ListNode<Type> *r=q; //r trails q
+    q=p;
+    p=p->link;
+    q->link=r;
+    }
+    first=q;
+};
+````
+將list轉置(反轉)  
+![inverting a list](https://github.com/joyce-hsu/data-structure/blob/master/inverting-a-list.png)  
+
+
+**Program 4.13 Concatenating Two Chains**  
+````
+Template <class Type>
+void List<Type>:: Concatenate(List<Type> b)
+// this = (a1, …, am) and b = (b1, …, bn) m, n ≥ ,
+// produces the new chain z = (a1, …, am, b1, bn) in this.
+{
+    if (!first) { first = b.first; return;}
+    if (b.first) {
+         for (ListNode<Type> *p = first; p->link; p = p->link); // no body
+         p->link = b.first;
+     }
+}
+````
+for (ListNode<Type> *p = first; p->link; p = p->link);  
+  這句很特別，for loop裡沒有特別要做什麼事，只是把p移到linked list最末  
+
+**List Destructor**
+````
+Template <class Type>
+List<Type>::~List()
+// Free all nodes in the chain
+{
+    ListNode<Type>* next;
+    for (; first; first = next) {
+        next = first->link;
+        delete first;
+    }
+}
+````
+**Diagram of A Circular List**  
+![A Circular List](https://github.com/joyce-hsu/data-structure/blob/master/circular-list.png)  
+
+**Linked Stacks and Queues**  
+![linked stacks and queues](https://github.com/joyce-hsu/data-structure/blob/master/linked-stacks-and-queues.png)  
+Stacks and Queues不只可以用array implement  
+linked list也可以  
+
+---
+
+**Revisit Polynomials**  
+優點:解決sparse的問題  
+缺點:(老師說自己想,但我目前想不到嗚嗚)  
+
+**Program 4.20 Polynomial Class Definition**  
+````
+struct Term
+// all members of Terms are public by default
+{
+    int coef; // coefficient
+    int exp; // exponent
+    void Init(int c, int e) {coef = c; exp = e;};
+};
+
+class Polynomial
+{
+    friend Polynomial operator+(const Polynomial&, const Polynomial&);
+    private:
+    List<Term> poly;
+};
+````  
+operator+  : 把operator "+" overload成想要的多項式的 +  
+
+**Operating On Polynomials**  
+![polynomial-linked-1](https://github.com/joyce-hsu/data-structure/blob/master/polynomial-linked-1.png)
+![polynomial-linked-2](https://github.com/joyce-hsu/data-structure/blob/master/polynomial-linked-2.png)  
+ 相加比array容易~
