@@ -106,7 +106,34 @@ pointer指定的順序不可以相反
 
 **List Iterator**  
 - A list iterator is an object that is used to traverse all the elements of a container class.
-- ListIterator\<Type> is delcared as a friend of both List<Type> and ListNode<Type>.
-- A ListIterator/<Type> object is initialized with the name of a List<Type> object l with which it will be associated.
-- The ListIterator<Type> object contains a private data member current of type ListNode<Type> *. At all times, current points to a node of list *l*.
-- The ListIterator<Type> object defines public member functions NotNull(), NextNotNull(), First(), and Next() to perform various tests on and to retrieve elements of *l*.
+- ListIterator\<Type> is delcared as a friend of both List\<Type> and ListNode\<Type>.
+- A ListIterator\<Type> object is initialized with the name of a List<Type> object l with which it will be associated.
+- The ListIterator\<Type> object contains a private data member current of type ListNode\<Type> *. At all times, current points to a node of list *l*.
+- The ListIterator\<Type> object defines public member functions NotNull(), NextNotNull(), First(), and Next() to perform various tests on and to retrieve elements of *l*.
+- 老師說:把list中比較general的operation拿出來寫成class給全部的linked list用，例如:scan, number of node, not NULL(), NextNotNull(), First()  
+  
+**Program 4.8 Template of Linked Lists**  
+````
+Enum Boolean { FALSE, TRUE};
+template <class Type> class List;
+template <class Type> class ListIterator;
+
+template <class Type> class ListNode {
+    friend class List<Type>;
+    friend class ListIterator <Type>;
+    private:
+        Type data;
+        ListNode *link;
+};
+
+Template <class Type> class List {  //**這部分是被抽出的**
+    friend class ListIterator <Type>;  //**所以要宣告friend class代表可以給別人用**
+    public:
+        List() {first = 0;};
+        // List manipulation operations
+        .
+        .
+    private:
+        ListNode <Type> *first;
+};
+````
