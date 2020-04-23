@@ -227,7 +227,7 @@ linked list也可以
 
 ---
 
-**Revisit Polynomials**  
+### Revisit Polynomials  
 優點:解決sparse的問題  
 缺點:(老師說自己想,但我目前想不到嗚嗚)  
 
@@ -253,4 +253,60 @@ operator+  : 把operator "+" overload成想要的多項式的 +
 **Operating On Polynomials**  
 ![polynomial-linked-1](https://github.com/joyce-hsu/data-structure/blob/master/polynomial-linked-1.png)
 ![polynomial-linked-2](https://github.com/joyce-hsu/data-structure/blob/master/polynomial-linked-2.png)  
- 相加比array容易~
+相加:比array容易~!!  
+
+**Represent polynomial as circular list**  
+![polynomial-circular-list](https://github.com/joyce-hsu/data-structure/blob/master/polynomial-circular-list.png)  
+因為是circular list 所以要加一個 head node
+
+---
+
+### Free Pool    
+node的資收場
+不浪費太多的overhead去creat新的node  
+(overhead:好像翻做後勤資源)  
+````
+template < class Type>
+ListNode <Type>* CircList::GetNode()
+// Provide a node for use
+{
+ListNode <Type> *x;
+if( !av ) 
+    x = new ListNode<Type>;
+else{ 
+    x = av; 
+    av = av -> link;
+    }
+return x;
+}
+````
+av : available linked list 表示free pool裡有東西  
+!av表示free pool is empty  
+
+**把node丟進free pool**  
+口語上可以說return a node
+````
+template <class Type>
+void CircList<Type>::RetNode( ListNode<Type> *x
+//Free the node pointed to by x
+{
+    x -> link = av;
+    av = x;
+}
+````
+**Erase the circular list pointed to by first**  
+````
+template <class KeyType>
+void CircList<Type>::~CirList()
+//Erase the circular list pointed to by first
+{
+    if( first )
+    {
+        ListNode* second = first -> link; //(1)
+        first->link = av; //(2)
+        av =second; //(3)
+        first =0; //(4)
+        }
+}
+````
+![erase-circular-list](https://github.com/joyce-hsu/data-structure/blob/master/erase-circular-list.png)
