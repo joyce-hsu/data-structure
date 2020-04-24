@@ -350,7 +350,7 @@ What kinds of data structures are adopted?
 只能表示需要兩個步驟
 phase1:讀數字;phase2依關係分類  
 
-![Lists After Pairs input]()
+![Lists After Pairs input](https://github.com/joyce-hsu/data-structure/blob/master/lists-after-pairs-input.png)
 
 Program 4.28:
 ````
@@ -487,11 +487,11 @@ x 會不斷往下指到seq\[i]連接的linked list，當x不存在代表該列�
 ### Sparse Martix  
 new scheme  
 Each column (row): a circular linked list with a head node  
-![linked representation sparse matrix]() 
+![linked representation sparse matrix](https://github.com/joyce-hsu/data-structure/blob/master/linked-representation-sparse-matrix.png) 
 為表示方便才這樣畫，除了黑框白底的node，其實只有一藍三黃的node  
 For an n\*m sparse matrix with r nonzero terms,  
 the number of nodes needed is max{n, m} + r + 1.  
-![headnode-entrynode]()   
+![headnode-entrynode](https://github.com/joyce-hsu/data-structure/blob/master/headnode-entrynode.png)   
 黃色三欄位、黑色五欄位  
 down連同一行的元素；right連同一列的元素  
 program 4.30:  
@@ -560,13 +560,13 @@ class DblList {
 };
 ````
   
-![doubly-linked-list-headnode]()    
+![doubly-linked-list-headnode](https://github.com/joyce-hsu/data-structure/blob/master/doubly-linked-list-headnode.png)    
 A head node is also used in a doubly linked list to allow us to implement our operations more easily.  
 圖比較難看懂，head node的rlink指first node；llink指final node
 empty的話指向自己  
 
 **Insertion into an empty doubly linked circular list**  
-![insertion-empty-doublylinkedcircularlist]()  
+![insertion-empty-doublylinkedcircularlist](https://github.com/joyce-hsu/data-structure/blob/master/insertion-empty-doublylinkedcircularlist.png)  
 
 **Insert**  
 ````
@@ -579,7 +579,7 @@ void DblList::Insert(DblListNode *p, DblListNode *x)
     x->rlink = p ; //(4)
 }
 ````  
-![insert-doublylinkedcircularlist]()  
+![insert-doublylinkedcircularlist](https://github.com/joyce-hsu/data-structure/blob/master/insert-doublylinkedcircularlist.png)  
 
 **Delete**  
 ````
@@ -592,4 +592,12 @@ else {
     }
 }
 ````
-![delete-doublylinkedcircularlist]()  
+![delete-doublylinkedcircularlist](https://github.com/joyce-hsu/data-structure/blob/master/delete-doublylinkedcircularlist.png)  
+
+**老師閒聊**  
+data base  
+file是什麼構成的?存在disk磁碟機裡就是由disk構成  
+disk最小儲存單位是block  
+檔案的data structrue 就是doubly linked list  
+block之間雙向pointer串連  
+single linked list也可以，只是風險較高，丟失一個pointer就找不回資料了
