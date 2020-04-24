@@ -309,4 +309,173 @@ void CircList<Type>::~CirList()
         }
 }
 ````
-![erase-circular-list](https://github.com/joyce-hsu/data-structure/blob/master/erase-circular-list.png)
+![erase-circular-list](https://github.com/joyce-hsu/data-structure/blob/master/erase-circular-list.png)  
+
+---
+
+### Equivalence Relations  
+A relation over a set, S, is said to be an equivalence relation over S.  
+iff : it is symmertric, reflexive, and transitive over S.
+reflexive, x=x  
+symmetric, if x=y, then y=x  
+transitive, if x=y and y=z, then x=z 
+
+iff:⇔ P iff Q( P if and only if Q)
+
+**Examples**  
+- Input: pairs of numbers
+0≡4, 3≡1, 6≡10, 8≡9, 7≡4, 6≡8, 3≡5, 2≡11, 11≡0
+- Output: equivalent sets
+three equivalent classes {0,2,4,7,11}; {1,3,5}; {6,8,9,10}  
+
+**A Rough Algorithm to Find Equivalence Classes** 
+````
+void equivalenec()
+{
+    initialize;
+    //Phase 1
+    while (there are more pairs) {
+        read the next pair <i,j>;
+        process this pair;
+    }
+    initialize the output;
+    //Phase 2
+    do {
+        output a new equivalence class;
+        } while (not done);
+}
+````
+太rough了!
+What kinds of data structures are adopted?
+只能表示需要兩個步驟
+phase1:讀數字;phase2依關係分類  
+
+![Lists After Pairs are input]()
+
+Program 4.28:
+````
+void equivalence()
+{
+    read n; // read in number of objects
+    initialize seq to 0 and out to FASLE;
+    while more pairs // input pairs
+    {
+        read the next pair (i,j);
+        put j on seq[i] list;
+        put i on seq[j] list;
+    }
+    for( i = 0; i < n; i++ )
+        if( out[i] == FALSE){
+            out[i] = TRUE;  //紀錄是否ouput過
+            output the equivalence class that contains object i
+            //direct equivalence
+            //Compute indirect equivalence using transitivity
+        }
+}// end of equivalence
+````
+
+program 4.29:  
+````
+enum Boolean { FALSE, TRUE };
+class ListNode{
+    friend void equivalence();
+    private:
+        int data;
+        ListNode *link;
+        ListNode(int);
+};
+typedef ListNode *ListNodePrt;
+
+ListNode::ListNode(int d){
+    data = d;
+    link = 0;
+}
+
+void equivalence()
+// Input the equivalence pairs an output the equivalence classes
+{
+    ifstream inFile(“equiv.in”, ios::in); //”equiv.in” is the input file
+    if(!inFile){
+        cerr << “Cannot open input file ”<< endl;
+        return;
+    }
+    int i, j, n;
+    inFile >> n; // read number of objects
+    // initialize seq and out
+    ListNodePtr *seq = new ListNodePtr[n];
+    Boolean *out = new Boolean[n];
+    for( i = 0; i < n ; i++){
+        seq[i] = 0;
+        out[i] = FALSE;
+    }
+    
+    // Phase 1: input equivalence pairs
+    inFile >> i >> j ;
+    while( inFile.good()){ // check end of file
+        ListNode *x = new ListNode(j); x->link = seq[i];
+        seq[i] = x // add j to seq[i] ex.add 4 to seq[0]
+        ListNode *y = new ListNode(i); y->link = seq[j];
+        seq[j] = y // add i to seq[j]
+        inFile >> i >> j;
+    }
+    
+    // Phase 2: output equivalence classes
+    for( i = 0; i < n; i++)
+        if( out[i] == FALSE){ // needs to be output
+            cout << endl << “A new class: “ << i; // for example, i=0. Output: 0
+            out[i] = TRUE;
+            ListNode *x = seq[i]; ListNode *top = 0; //init stack
+            
+            while(1){ // find rest of class
+                while(x){ // process the list
+                    j = x->data; // when i=0. j=11
+                    if( out[j] == FALSE ){
+                        cout << “,” << j; //when i=0 in first round, output:11
+                        out[j] = TRUE;
+                        //*push*
+                        ListNode *y = x -> link; //when i=0 in the first round, y=4
+                        x -> link = top;
+                        top = x; // in stack, top points to node 11
+                        x = y;
+                    }
+                    else x = x->link;
+                }// end of while(x)
+                //*pop*
+                if( !top ) break;
+                else{
+                    x = seq[top->data];
+                    top = top->link; // unstack
+                }
+            } // end of while(1)
+            
+        } // end of if( out[i] == FALSE)
+        
+        //delete
+        for( i = 0; i < n; i++ )
+            while( seq[i]){
+                ListNode *delnode = seq[i];
+                seq[i] = delnode->link;
+                delete delnode;
+            }
+        }
+    delete [] seq; delete [] out;
+} // end of equivalence
+````
+從seq\[0]開始逐一探索、印出(11、4)並存入stack，11 先加進stack，然後才是 4    
+因為stack是FILO，所以seq\[0]都印出後，探索seq\[4]  
+探索seq\[4]時，將 7 印出並加入stack，隨後開始探索seq\[7]  
+由於seq\[7]中的 4 已經被印出，所以stack pop out 11  
+接著開始探索seq\[11]，0 被印過了就略過，發現 2 沒有印過，所以將 2 印出並push in stack  
+隨後從stack pop out 2，探索seq\[2]，但seq\[2]中的 11 已印出，stack裡面也空了(!top)，故結束整個while(1)  
+
+統整一下  
+phase2的for迴圈( i = 0; i < n; i++ )，每次迴圈時會做一件大事:**確認seq\[i]是否印出**  
+
+若seq\[i]沒有印出過，則進入while(1)迴圈，該迴圈主要有兩件事：
+1. 將seq\[i]連接的linked list數字都印出  while(x)  
+x 會不斷往下指到seq\[i]連接的linked list，當x不存在代表該列已印完
+  - x 不存在，跳過  
+  - x 存在，將x指到的數字印出，並加入stack  
+2. 確認stack裡還有沒有數值，top是否存在  
+  - top不存在，跳出while(1)，進入下次的for迴圈  
+  - top存在，將 x 指到seq\[top->data]進行while(x)
