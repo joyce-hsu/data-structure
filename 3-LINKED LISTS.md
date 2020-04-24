@@ -350,7 +350,7 @@ What kinds of data structures are adopted?
 只能表示需要兩個步驟
 phase1:讀數字;phase2依關係分類  
 
-![Lists After Pairs are input]()
+![Lists After Pairs input]()
 
 Program 4.28:
 ````
@@ -478,4 +478,117 @@ x 會不斷往下指到seq\[i]連接的linked list，當x不存在代表該列�
   - x 存在，將x指到的數字印出，並加入stack  
 2. 確認stack裡還有沒有數值，top是否存在  
   - top不存在，跳出while(1)，進入下次的for迴圈  
-  - top存在，將 x 指到seq\[top->data]進行while(x)
+  - top存在，將 x 指到seq\[top->data]進行while(x)  
+  
+[參考影片](https://www.youtube.com/watch?v=EevziMd4MMs)
+  
+---
+
+### Sparse Martix  
+new scheme  
+Each column (row): a circular linked list with a head node  
+![linked representation sparse matrix]() 
+為表示方便才這樣畫，除了黑框白底的node，其實只有一藍三黃的node  
+For an n\*m sparse matrix with r nonzero terms,  
+the number of nodes needed is max{n, m} + r + 1.  
+![headnode-entrynode]()   
+黃色三欄位、黑色五欄位  
+down連同一行的元素；right連同一列的元素  
+program 4.30:  
+````
+enum Boolean { FALSE, TRUE };
+struct Triple { int value, row, col ; };
+class Matrix ; //forward declaration
+class MatrixNode {
+    friend class Matrix ;
+    //for reading in a matrix
+    friend istream& operator>>(istream&, Matrix&) ;
+    private:
+        MatrixNode *down, *right ;
+        Boolean head ;
+        union { //anonymous union
+            MatrixNode *next ;
+            Triple triple ;
+        };
+        MatrixNode(Boolean, Triple *) ; //constructor
+    };
+MatrixNode::MatrixNode(Boolean b, Triple *t) //constructor
+{
+    head = b ;
+    if (b) { right = next = down = this;} //row/column head node
+    else triple = *t ; //head node for list of headnodes OR element
+    //node
+}
+typedef MatrixNode * MatrixNodePtr ;
+//to allow subsequent creation of array of pointers
+class Matrix{
+    friend istream& operator>>(istream&, Matrix&) ;
+    public:
+        ~Matrix() ; //destructor
+    private:
+        MatrixNode *headnode ;
+};
+````
+Boolean head:因為想用同一個MatrixNode表示head和matrix的數值，所以需要boolean來判斷是否為head  
+union:二選一，如果是head選MatrixNode \*next，如果不是head選Triple triple(value,row,col)  
+用linked list方式表達matrix的話，做transpose很簡單，只要raw跟col對調即可  
+
+---
+
+### Doubly Linked List  
+Move in forward and backward direction.  
+  
+Node in doubly linked list  
+left link field (llink)  
+data field (item)  
+right link field (rlink)  
+  
+program 4.33:
+````
+class DblList ;
+class DblListNode {
+    friend class DblList ;
+    private:
+        int data ;
+        DblListNode *llink, *rlink ;
+};
+class DblList {
+    public:
+        //List manipulation operations
+    private:
+        DblListNode *first ; //points to head node
+};
+````
+  
+![doubly-linked-list-headnode]()    
+A head node is also used in a doubly linked list to allow us to implement our operations more easily.  
+圖比較難看懂，head node的rlink指first node；llink指final node
+empty的話指向自己  
+
+**Insertion into an empty doubly linked circular list**  
+![insertion-empty-doublylinkedcircularlist]()  
+
+**Insert**  
+````
+void DblList::Insert(DblListNode *p, DblListNode *x)
+//insert node p to the right of node x
+{
+    p->llink = x ; //(1)
+    p->rlink = x->rlink ; //(2)
+    x->rlink->llink = p ; //(3)
+    x->rlink = p ; //(4)
+}
+````  
+![insert-doublylinkedcircularlist]()  
+
+**Delete**  
+````
+void DblList::Delete(DblListNode *x) {
+    if(x == first) cerr<<“Deletion of head node not permitted”<<endl ;
+else {
+    x->llink->rlink = x->rlink ; //(1)
+    x->rlink->llink = x->llink ;//(2)
+    delete x ;
+    }
+}
+````
