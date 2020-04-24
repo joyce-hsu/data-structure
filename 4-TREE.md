@@ -39,6 +39,7 @@ Each node only has one leftmost child and one closest sibling.
 **Degree Two Tree Representation - Binary Tree**  
 ![binary-tree](https://github.com/joyce-hsu/data-structure/blob/master/binary-tree.png)  
   
+**Distinctions between a binary tree and a tree**  
 ![distinctions-between-binarytree-and-tree](https://github.com/joyce-hsu/data-structure/blob/master/distinctions-between-binarytree-and-tree.png)
 - There is no tree with zero nodes. But there is an empty binary tree.
 - Binary tree distinguishes between the order of the children while in a tree we do not.
@@ -125,7 +126,7 @@ class Tree {
 
 ---
 
-###Binary Tree Traversals  
+### Binary Tree Traversals  
 - Let L, V, and R stand for moving left, visiting the node, and moving right.
 - There are six possible combinations of traversal
   – LVR, LRV, VLR, VRL, RVL, RLV
