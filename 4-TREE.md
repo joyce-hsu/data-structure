@@ -5,7 +5,7 @@ Tree: a collection of nodes
 tree的應用很廣: PSC:node即是基地台  
   
 **Terminology**  
-!(sample-tree)[]  
+![sample-tree](https://github.com/joyce-hsu/data-structure/blob/master/sample-tree.png)  
 - level 表示這個tree有幾層  
 The height or the depth of a tree is the maximum level of any node in the tree.  
 - degree 表示有多少pointer  
@@ -18,7 +18,7 @@ The height or the depth of a tree is the maximum level of any node in the tree.
 **List Representation**
 ( A ( B ( E ( K, L ), F ), C ( G ), D ( H ( M ), I, J ) ) )  
 The root comes first, followed by a list of sub-trees  
-![list-representation]()  
+![list-representation](https://github.com/joyce-hsu/data-structure/blob/master/list-representation.png)  
 
 **Possible Node Structure For A Tree of Degree**  
 Lemma 5.1:   
@@ -26,26 +26,26 @@ If T is a k-ary tree (i.e., a tree of degree k) with n nodes,
 each having a fixed size as in Figure 5.4,   
 then n(k-1) + 1 of the nk child fileds are 0, n ≥ 1.
 (k-ary tree: binary tree(B tree) k = 2)  
-![Figure-5.4]()  
+![Figure-5.4](https://github.com/joyce-hsu/data-structure/blob/master/figure-5.4.png)  
 浪費、沒用到的pointer數量為: nk-(n-1)=n(k-1)+1  
 
 **Left Child-Right Sibling Representation**  
 Each node has two links (or pointers).  
 Each node only has one leftmost child and one closest sibling.  
-![left-child-right-sibling]()  
+![left-child-right-sibling](https://github.com/joyce-hsu/data-structure/blob/master/left-child-right-sibling.png)  
   
 ---
   
 **Degree Two Tree Representation - Binary Tree**  
-![binary-tree]()  
+![binary-tree](https://github.com/joyce-hsu/data-structure/blob/master/binary-tree.png)  
   
-![distinctions-between-binarytree-and-tree]()
+![distinctions-between-binarytree-and-tree](https://github.com/joyce-hsu/data-structure/blob/master/distinctions-between-binarytree-and-tree.png)
 - There is no tree with zero nodes. But there is an empty binary tree.
 - Binary tree distinguishes between the order of the children while in a tree we do not.
 有分左跟右  
 
 **Binary Tree Example**  
-![binary tree example]()  
+![binary tree example](https://github.com/joyce-hsu/data-structure/blob/master/binary-tree-example.png)  
 左:skewed binary tree 歪斜二元樹  
 右:complete binary tree  
   
@@ -55,8 +55,8 @@ Each node only has one leftmost child and one closest sibling.
 Lemma 5.2 \[Maximum number of nodes]  
 1. The maximum number of nodes on level i of a binary tree is 2^(i-1), i ≥ 1.  
 2. The maximum number of nodes in a binary tree of depth k is 2^k – 1, k ≥ 1.  
-![maximum-number-nodes-BT]()  
-![maximum-number-nodes-BT-2]()  
+![maximum-number-nodes-BT](https://github.com/joyce-hsu/data-structure/blob/master/maximum-number-nodes-BT.png)  
+![maximum-number-nodes-BT-2](https://github.com/joyce-hsu/data-structure/blob/master/maximum-number-nodes-BT-2.png)  
 
 **Relations between Number of Leaf Nodes and Nodes of Degree 2**  
 For any nonempty binary tree, T, if n0 is the number of leaf nodes and n2 the number of nodes of degree 2, then n0=n2+1  
@@ -66,7 +66,7 @@ root沒有人指,所以B = n-1
 Let n0, n1, n2 represent the nodes with no children, single child, and two children respectively.  
 n= n0+n1+n2, B+1=n, B=n1+2n2 ==> n1+2n2+1=n  
 n1+2n2+1= n0+n1+n2 ==> n0=n2+1
-![relations-between-Leaf-and-Degree2]()  
+![relations-between-Leaf-and-Degree2](https://github.com/joyce-hsu/data-structure/blob/master/relations-between-Leaf-and-Degree2.png)  
 
 **Full BT VS Complete BT**  
 - Full BT  
@@ -75,7 +75,7 @@ A full binary tree of depth k is a binary tree of depth k having 2^k -1 nodes, k
 - Complete BT  
 A binary tree with n nodes and depth k is complete iff its nodes correspond to the nodes numbered from 1 to n in the full binary tree of depth k.  
 當我們有n個node，這n個node都要在Full Binary Tree的前十個位置  
-![full-complete-BT]()  
+![full-complete-BT](https://github.com/joyce-hsu/data-structure/blob/master/full-complete-BT.png)  
 
 老師問:如果H,I移到G下面，是否為complete BT?  
 答:Nooooooo\~~~~~~~~  這樣前面就缺角了  
@@ -88,17 +88,17 @@ A binary tree with n nodes and depth k is complete iff its nodes correspond to t
 – left_child(i) is at *2i* if 2i ≤ n. If 2i > n, then i has no left child.
 – right_child(i) is at *2i + 1* if 2i + 1 ≤ n. If 2i + 1 > n, then i has no right child.
 2. Position zero of the array is not used.  
-![sequential-representation]()   
+![sequential-representation](https://github.com/joyce-hsu/data-structure/blob/master/sequential-representation.png)   
 找親代或子代很方便
 缺點: 缺節點時會造成空間浪費、插入或刪除節點會需要進行資料搬移  
 
 **Compare two binary tree representations**  
-![compare-two-BT]()
+![compare-two-BT](https://github.com/joyce-hsu/data-structure/blob/master/compare-two-BT.png)
 
 ---
 
 ### Node Representation  
-![Node Representation]()  
+![Node Representation](https://github.com/joyce-hsu/data-structure/blob/master/node-representation.png)  
 
 **Linked Representation**  
 ````
@@ -119,7 +119,7 @@ class Tree {
 };
 ````
 **Linked List Representation For The Binary Trees**  
-![linked-list-representation-BT]()  
+![linked-list-representation-BT](https://github.com/joyce-hsu/data-structure/blob/master/linked-list-representation-BT.png)  
 左:skewed binary tree 歪斜二元樹  
 右:complete binary tree  
 
@@ -139,10 +139,10 @@ class Tree {
 2. copy tree會用到  
 
 **Arithmetic Expression Using BT**  
-![arithmetic-expression]()  
+![arithmetic-expression](https://github.com/joyce-hsu/data-structure/blob/master/arithmetic-expression.png)  
 
 **Trace Operations of Inorder Traversal**  
-![inorder-traversal]()  
+![inorder-traversal](https://github.com/joyce-hsu/data-structure/blob/master/inorder-traversal.png)  
   
 Program 5.1 : inorder
 ````
