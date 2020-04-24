@@ -469,7 +469,7 @@ void equivalence()
 隨後從stack pop out 2，探索seq\[2]，但seq\[2]中的 11 已印出，stack裡面也空了(!top)，故結束整個while(1)  
 
 統整一下  
-phase2的for迴圈( i = 0; i < n; i++ )，每次迴圈時會做一件大事:**確認seq\[i]是否印出**  
+phase2的for迴圈( i = 0; i < n; i++ )，每次迴圈時會做一件大事: **確認seq\[i]是否印出**  
 
 若seq\[i]沒有印出過，則進入while(1)迴圈，該迴圈主要有兩件事：
 1. 將seq\[i]連接的linked list數字都印出  while(x)  
@@ -592,3 +592,4 @@ else {
     }
 }
 ````
+![delete-doublylinkedcircularlist]()  
