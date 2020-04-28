@@ -259,8 +259,8 @@ queue有FIFO的特性，所以加入queue的順序不能亂改
 
 **Some Other Binary Tree Functions**  
 With the inorder, postorder, or preorder mechanisms, we can implement all needed binary tree functions. e.g.,  
- – Copying Binary Trees  
- – Testing Equality  
+ - Copying Binary Trees  
+ - Testing Equality  
    - Two binary trees are equal if their topologies are the same and the information in corresponding nodes is identical.  
   
 Program 5.9: **Copy constructor**  
@@ -284,9 +284,9 @@ TreeNode* Tree::copy(TreeNode *orignode) //Workhorse
 }
 ````  
 temp->LeftChild = copy(orignode->LeftChild); 是recursive!!  
-倒數第五到七行很像VLR preorder!!
+倒數第五到七行很像VLR preorder!!  
 **老師問:**  
-可以用inorder/postorder來cory tree嗎?
+可以用inorder/postorder來cory tree嗎?  
 我的想法:可以!有每個走到就行(?)  
 
 Program 5.10: **Driver-assumed to be a friend of class Tree.**  
