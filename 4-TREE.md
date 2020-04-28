@@ -321,7 +321,7 @@ int equal(TreeNode *a, TreeNode *b)
 - Parentheses can be used to alter the normal order of evaluation (¬ > ∧ > ∨).
 - Example: x1 ∨ (x2 ∧ ¬x3)
 - Satisfiability problem: is there an assignment to make an expression true?  
-![calculus-expression]()  
+![calculus-expression](https://github.com/joyce-hsu/data-structure/blob/master/calculus-expression.png)  
 自己看書:如何建出這棵樹的?  
 
 **Perform Formula Evaluation**  
@@ -379,5 +379,6 @@ void SatTree::PostOrderEval(SatNode * s) // workhorse
 現在也是兩個phase
 - 建出這棵樹
 - 利用樹來儲存與判斷結果，最後的結果會放在root  
+![calculus-expression2](https://github.com/joyce-hsu/data-structure/blob/master/calculus-expression2.png) 
 
 **老師問:** 想想看如何用樹來計算四則運算?
