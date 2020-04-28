@@ -258,10 +258,10 @@ queue有FIFO的特性，所以加入queue的順序不能亂改
 ---
 
 **Some Other Binary Tree Functions**  
-With the inorder, postorder, or preorder mechanisms, we can implement all needed binary tree functions. e.g.,
-– Copying Binary Trees
-– Testing Equality
-  - Two binary trees are equal if their topologies are the same and the information in corresponding nodes is identical.  
+With the inorder, postorder, or preorder mechanisms, we can implement all needed binary tree functions. e.g.,  
+ – Copying Binary Trees
+ – Testing Equality
+   - Two binary trees are equal if their topologies are the same and the information in corresponding nodes is identical.  
   
 Program 5.9: **Copy constructor**  
 ````
@@ -326,12 +326,12 @@ int equal(TreeNode *a, TreeNode *b)
 自己看書:如何建出這棵樹的?  
 
 **Perform Formula Evaluation**  
-- To evaluate an expression, we can traverse its tree in postorder.
-- To perform evaluation, assume that each node has four fields
-  – LeftChild
-  – data 用來存T/F, ∨(or) , ∧(and) , ¬(not)  
+- To evaluate an expression, we can traverse its tree in postorder.  
+- To perform evaluation, assume that each node has four fields  
+  – LeftChild  
+  – data 用來存T/F, ∨(or) , ∧(and) , ¬(not)   
   – value 用來存判斷的結果  
-  – RightChild    
+  – RightChild  
   
 **First Version of Satisfiability Algorithm**  
 ````
