@@ -285,8 +285,7 @@ TreeNode* Tree::copy(TreeNode *orignode) //Workhorse
 ````  
 temp->LeftChild = copy(orignode->LeftChild); 是recursive!!  
 倒數第五到七行很像VLR preorder!!  
-**老師問:**  
-可以用inorder/postorder來cory tree嗎?  
+**老師問:** 可以用inorder/postorder來cory tree嗎?  
 我的想法:可以!有每個走到就行(?)  
 
 Program 5.10: **Driver-assumed to be a friend of class Tree.**  
@@ -328,10 +327,10 @@ int equal(TreeNode *a, TreeNode *b)
 **Perform Formula Evaluation**  
 - To evaluate an expression, we can traverse its tree in postorder.  
 - To perform evaluation, assume that each node has four fields  
-  – LeftChild  
-  – data 用來存T/F, ∨(or) , ∧(and) , ¬(not)   
-  – value 用來存判斷的結果  
-  – RightChild  
+  - LeftChild  
+  - data 用來存T/F, ∨(or) , ∧(and) , ¬(not)   
+  - value 用來存判斷的結果  
+  - RightChild  
   
 **First Version of Satisfiability Algorithm**  
 ````
