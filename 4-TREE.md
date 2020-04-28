@@ -259,8 +259,8 @@ queue有FIFO的特性，所以加入queue的順序不能亂改
 
 **Some Other Binary Tree Functions**  
 With the inorder, postorder, or preorder mechanisms, we can implement all needed binary tree functions. e.g.,  
- – Copying Binary Trees
- – Testing Equality
+ – Copying Binary Trees  
+ – Testing Equality  
    - Two binary trees are equal if their topologies are the same and the information in corresponding nodes is identical.  
   
 Program 5.9: **Copy constructor**  
