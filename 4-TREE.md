@@ -231,3 +231,154 @@ void Tree::NonrecInorder()
 ````  
 **老師問**
 如果preorder/postorder要用nonrecursive...如何做?  
+
+**Level-Order Traversal**  
+- All previous mentioned schemes use stacks
+- Level-order traversal uses a queue
+- Level-order scheme visits the root first, then the root’s left child, followed by the root’s right child
+- All the nodes at a level are visited before moving down to another level
+  
+**Level-Order Traversal of A Binary Tree**  
+````
+void Tree::LevelOrder()
+// Traverse the binary tree in level order
+{
+    Queue<TreeNode *> q;
+    TreeNode *CurrentNode = root;
+    while (CurrentNode) {
+        cout << CurrentNode->data<<endl;
+        if (CurrentNode->LeftChild) q.Add(CurrentNode->LeftChild);
+        if (CurrentNode->RightChild) q.Add(CurrentNode->RightChild);
+        CurrentNode = *q.Delete();
+    }
+}
+````
+queue有FIFO的特性，所以加入queue的順序不能亂改  
+
+---
+
+**Some Other Binary Tree Functions**  
+With the inorder, postorder, or preorder mechanisms, we can implement all needed binary tree functions. e.g.,
+– Copying Binary Trees
+– Testing Equality
+  - Two binary trees are equal if their topologies are the same and the information in corresponding nodes is identical.  
+  
+Program 5.9: **Copy constructor**  
+````
+Tree::Tree(const Tree& s) //driver
+{
+    root = copy(s.root);
+}
+TreeNode* Tree::copy(TreeNode *orignode) //Workhorse
+//This function returns a pointer to an exact copy of the binary
+//tree rooted at orignode.
+{
+    if(orignode) {
+        TreeNode *temp = new TreeNode;
+        temp->data = orignode->data;  //V
+        temp->LeftChild = copy(orignode->LeftChild); //L
+        temp->RightChild = copy(orignode->RightChild);  //R
+        return temp;
+    }
+    else return 0;
+}
+````  
+temp->LeftChild = copy(orignode->LeftChild); 是recursive!!  
+倒數第五到七行很像VLR preorder!!
+**老師問:**  
+可以用inorder/postorder來cory tree嗎?
+我的想法:可以!有每個走到就行(?)  
+
+Program 5.10: **Driver-assumed to be a friend of class Tree.**  
+````
+int operator==(const Tree& s, const Tree& t)
+{
+    return equal(s.root, t.root);
+}
+//Workhorse-assumed to be a friend of TreeNode.
+int equal(TreeNode *a, TreeNode *b)
+//This function returns 0 if the subtrees at a and b are not
+//equivalent. Otherwise, it will return 1.
+{
+    if((!a)&&(!b)) return 1; //both a and b are 0
+        if(a && b //both a and b are non-0
+            && (a->data == b->data) //data is the same
+            && equal(a->LeftChild, b->LeftChild)
+            //left subtrees are the same
+            && equal(a->RightChild, b->RightChild))
+            //right subtrees are the same
+        return 1;
+    return 0;
+}
+````  
+中間的 if 判斷很長!但是確認是否為相同的樹還算容易  
+如果要判對是否為相似的樹，就要看定義來寫判斷，判斷有可能會更長  
+
+---
+
+**Propositional Calculus Expression**  
+- variable is an expression.
+- If x and y are expressions, then ¬x, x∧y, x∨y are expressions.
+- Parentheses can be used to alter the normal order of evaluation (¬ > ∧ > ∨).
+- Example: x1 ∨ (x2 ∧ ¬x3)
+- Satisfiability problem: is there an assignment to make an expression true?  
+![calculus-expression]()  
+自己看書:如何建出這棵樹的?  
+
+**Perform Formula Evaluation**  
+- To evaluate an expression, we can traverse its tree in postorder.
+- To perform evaluation, assume that each node has four fields
+  – LeftChild
+  – data 用來存T/F, ∨(or) , ∧(and) , ¬(not)  
+  – value 用來存判斷的結果  
+  – RightChild    
+  
+**First Version of Satisfiability Algorithm**  
+````
+For all 2n possible truth value combinations for the n
+variables
+{
+    generate the next combination;
+    replace the variables by their values;
+    evaluate the formula by traversing the tree it points to
+    in postorder;
+    if (formula.rootvalue()) {cout << combination; return;}
+}
+Cout << “no satisfiable combination”;
+````
+
+**Evaluating A Formula**  
+````
+void SatTree::PostOrderEval() // Driver
+{
+    PostOrderEval(root);
+}
+void SatTree::PostOrderEval(SatNode * s) // workhorse
+{
+    if (s) {
+        PostOrderEval(s->LeftChild);
+        PostOrderEval(s->RightChild);
+        switch (s->data) {
+            case LogicalNot: s->value =!s->RightChild->value;
+                break;
+            case LogicalAnd: s->value = s->LeftChild->value && s->RightChild->value;
+                break;
+            case LogicalOr: s->value = s->LeftChild->value || s->RightChild->value;
+                break;
+            case LogicalTrue: s->value = TRUE; break;
+            case LogicalFalse: s->value = FALSE; break;
+        }
+    }
+}
+````  
+
+在stack&queue的時候有算過四則運算  
+當時有兩個phase:
+- phase 1: infix 轉換成 postfix
+- phase 2: 將postfix加入stack，如果是數字直接add，遇到operator把最上面兩個數字取出，運算後放回stack  
+  
+現在也是兩個phase
+- 建出這棵樹
+- 利用樹來儲存與判斷結果，最後的結果會放在root  
+
+**老師問:** 想想看如何用樹來計算四則運算?
