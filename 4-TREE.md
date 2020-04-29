@@ -36,7 +36,7 @@ Each node only has one leftmost child and one closest sibling.
   
 ---
   
-**Degree Two Tree Representation - Binary Tree**  
+### Degree Two Tree Representation - Binary Tree**  
 ![binary-tree](https://github.com/joyce-hsu/data-structure/blob/master/binary-tree.png)  
   
 **Distinctions between a binary tree and a tree**  
@@ -382,3 +382,166 @@ void SatTree::PostOrderEval(SatNode * s) // workhorse
 ![calculus-expression2](https://github.com/joyce-hsu/data-structure/blob/master/calculus-expression2.png) 
 
 **老師問:** 想想看如何用樹來計算四則運算?
+  
+---
+
+### Threaded Binary Tree  
+讓沒有用到的link充分利用  
+Too many null pointers in current representation of binary trees  
+n: number of nodes  
+number of non-null links: n-1 (每個node都有被指到,除了root之外)  
+total links: 2n (每個node下面有兩個link)   
+null links: 2n-(n-1)=n+1  
+  
+Replace these null pointers with some useful “threads”  
+
+![threaded-BT]()  
+虛線是threaded  
+- If ptr->left_child is null, replace it with a pointer to the node that would be visited before ptr in an inorder traversal  
+- If ptr->right_child is null, replace it with a pointer to the node that would be
+visited after ptr in an inorder traversal  
+  
+如此一來需要判斷是tree pointer或是 threaded  
+To distinguish between normal pointers and threads, two boolean fields, LeftThread and RightThread, are added to the record in memory representation.  
+- t->LeftThread = TRUE => t->LeftChild is a thread.  
+- t->LeftThread = FALSE => t->LeftChild is a pointer to the left child.  
+![threaded]()  
+  
+To avoid dangling threads, a head node is used in representing a binary tree.  
+The original tree becomes the left subtree of the head node.  
+![figure-5.20]()   
+包含head node的 LEVEL 4 其中的 E 少一條threaded ; F 兩側的f都應標示成t  
+   
+![threaded-code]()  
+老師說可能是他code打得少，目前也還沒使用過Threaded Binary Tree (哈哈)  
+使用Threaded Binary Tree雖然利用了原本是NULL的地方  
+卻也增加了兩個欄位在insert/delete也要更多的Ppointer assignment  
+  
+**Insertion of r As a Right Child of s in A Threaded Binary Tree**  
+![threaded-insertion]()  
+![threaded-insertion2]()  
+
+````
+void ThreadedTree::InsertRight(ThreadNode *s, ThreadedNode *r)
+// Insert r as the right child of s
+{
+    r->RightChild = s->RightChild;
+    r->RightThread = s->RightThread;
+    r->LeftChild = s;
+    r->LeftThread = TRUE; // LeftChild is a thread
+    s->RightChild = r; // attach r to s
+    s->RightThread = FALSE;
+    if (!r->RightThread) {
+        ThreadedNode *temp = InorderSucc(r); // returns the inorder successor of r
+        temp->LeftChild = r;
+    }
+}
+````
+
+---
+
+### Huffman Codes  
+我們要將整篇文章編碼，事先將頻繁使用的word記錄下來，並讓頻繁字詞使用最少單位的碼(code size小)  
+如此一來解碼比較快  
+
+The expected decoding time is minimized by choosing code words resulting in a decode tree with minimal weighted external path length.  
+![decode-tree]()  
+最靠近root的字詞M4最常使用，在此樹狀圖中M4的編碼為 1    
+M1 = 000 ; M2 = 001 ; M3 = 01  
+最頻繁使用的字詞編碼最短，而較少使用的字編碼長一些較不會影響解碼時間  
+  
+![huffman-tree-example]()  
+長方形框框中的數字代表該字詞的使用頻率  
+a. 將使用頻率最小的兩個merge變成一顆tree，parent變成他們頻率的總和  
+b. 將使用頻率最小的兩個merge變成一顆tree，剛剛合成出的 5 還是最小的兩個之一，所以又被merge  
+以此類推......  
+  
+**Huffman Function**  
+````
+class BinaryTree {
+public:
+    BinaryTree(BinaryTree bt1, BinaryTree bt2) {
+        root->LeftChild = bt1.root;
+        root->RightChild = bt2.root;
+        root->weight = bt1.root->weight + bt2.root->weight;
+    }
+private:
+    BinaryTreeNode *root;
+}
+
+void huffman (List<BinaryTree> l)
+// l is a list of single node binary trees as decribed above
+{
+    int n = l.Size(); // number of binary trees in l
+    for (int i = 0; i < n-1; i++) { // loop n-1 times
+        BinaryTree first = l.DeleteMinWeight();
+        BinaryTree second = l.DeleteMinWeight();
+        BinaryTree *bt = new BinaryTree(first, second);
+        l.Insert(bt);
+    }
+}
+````
+O(nlog n)  
+倒數第五、六行裡的 l.DeleteMinWeight()  
+把最小值丟出來該怎麼做?   使用priority queue  
+
+---
+  
+### Priority Queues  
+In a priority queue, the element to be deleted is the one with highest (or lowest) priority.  
+An element with arbitrary priority can be inserted into the queue according to its priority.  
+A data structure supports the above two operations is called max (min) priority queue.  
+machine service
+- amount of time (min heap)
+- amount of payment (max heap)  
+以後看到 priority queue = heap  
+
+**比較**  
+|Representation|Insertion|Deletion|
+|:---:|:---:|:---:|
+|Unordered array|Θ(1)|Θ(n)|
+|Unordered linked list|Θ(1)|Θ(n)|
+|Sorted array|O(n)|Θ(1)|
+|Sorted linked list|O(n)|Θ(1)|
+|Max heap|O(log2n)|O(log2n)|  
+*2是小標*  
+Unordered array 和 Unordered linked list 再放入的時候都是直接放到最後沒有排序，delete最大的時候就要排序  
+O(log2n)代表用tree來表示  
+
+**Max (Min) Heap**  
+Heaps are frequently used to implement priority queues. The complexity is O(log n).  
+Definition: A max (min) tree is a tree in which the key value in each node is no smaller (larger) than the key values in its children (if any).  
+A max heap is a complete binary tree that is also a max tree. A min heap is a complete binary tree that is also a min tree.  
+雖然在heap中不一定右邊比左邊 大/小  
+但是一定從 leftchild 開始填，因為必為 complete binary tree  
+**Max Heap Example**  
+![max-heap-examples]()  
+**Min Heap Example**  
+![min-heap-examples]()  
+這裡是使用array來表示tree  
+  
+**Insertion Into a Max Heap**  
+![insertion-heap]()  
+![insertion-heap2]()  
+![insertion-heap3]()  
+
+````
+template <class Type>
+void MaxHeap<Type>::Insert(const Element <Type> &x)
+// insert x into the max heap
+{
+    if(n == MaxSize) {HeapFull(); return;}
+    n++;
+    for(int i = n;1;){
+        if(i == 1) 
+            break;  // at root
+        if(x.key <= heap[i/2].key) 
+            break;  // move from parent to i
+        heap[i] = heap[i/2];
+        i/=2;   
+    }
+    heap[i] = x;
+}
+````  
+把新來的數字放最後，再和parent比較，如果比parent大就swap，沒有就停下  
+n表示目前array末的位置  
