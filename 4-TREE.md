@@ -395,7 +395,7 @@ null links: 2n-(n-1)=n+1
   
 Replace these null pointers with some useful “threads”  
 
-![threaded-BT]()  
+![threaded-BT](https://github.com/joyce-hsu/data-structure/blob/master/threaded-BT.png)  
 虛線是threaded  
 - If ptr->left_child is null, replace it with a pointer to the node that would be visited before ptr in an inorder traversal  
 - If ptr->right_child is null, replace it with a pointer to the node that would be
@@ -405,21 +405,21 @@ visited after ptr in an inorder traversal
 To distinguish between normal pointers and threads, two boolean fields, LeftThread and RightThread, are added to the record in memory representation.  
 - t->LeftThread = TRUE => t->LeftChild is a thread.  
 - t->LeftThread = FALSE => t->LeftChild is a pointer to the left child.  
-![threaded]()  
+![threaded](https://github.com/joyce-hsu/data-structure/blob/master/threaded.png)  
   
 To avoid dangling threads, a head node is used in representing a binary tree.  
 The original tree becomes the left subtree of the head node.  
-![figure-5.20]()   
+![figure-5.20](https://github.com/joyce-hsu/data-structure/blob/master/figure-5.20.png)   
 包含head node的 LEVEL 4 其中的 E 少一條threaded ; F 兩側的f都應標示成t  
    
-![threaded-code]()  
+![threaded-code](https://github.com/joyce-hsu/data-structure/blob/master/threaded-code.png)  
 老師說可能是他code打得少，目前也還沒使用過Threaded Binary Tree (哈哈)  
 使用Threaded Binary Tree雖然利用了原本是NULL的地方  
 卻也增加了兩個欄位在insert/delete也要更多的Ppointer assignment  
   
 **Insertion of r As a Right Child of s in A Threaded Binary Tree**  
-![threaded-insertion]()  
-![threaded-insertion2]()  
+![threaded-insertion](https://github.com/joyce-hsu/data-structure/blob/master/threaded-insertion.png)  
+![threaded-insertion2](https://github.com/joyce-hsu/data-structure/blob/master/threaded-insertion2.png)  
 
 ````
 void ThreadedTree::InsertRight(ThreadNode *s, ThreadedNode *r)
@@ -445,12 +445,12 @@ void ThreadedTree::InsertRight(ThreadNode *s, ThreadedNode *r)
 如此一來解碼比較快  
 
 The expected decoding time is minimized by choosing code words resulting in a decode tree with minimal weighted external path length.  
-![decode-tree]()  
+![decode-tree](https://github.com/joyce-hsu/data-structure/blob/master/decode-tree.png)  
 最靠近root的字詞M4最常使用，在此樹狀圖中M4的編碼為 1    
 M1 = 000 ; M2 = 001 ; M3 = 01  
 最頻繁使用的字詞編碼最短，而較少使用的字編碼長一些較不會影響解碼時間  
   
-![huffman-tree-example]()  
+![huffman-tree-example](https://github.com/joyce-hsu/data-structure/blob/master/huffman-tree-example.png)  
 長方形框框中的數字代表該字詞的使用頻率  
 a. 將使用頻率最小的兩個merge變成一顆tree，parent變成他們頻率的總和  
 b. 將使用頻率最小的兩個merge變成一顆tree，剛剛合成出的 5 還是最小的兩個之一，所以又被merge  
@@ -517,15 +517,15 @@ A max heap is a complete binary tree that is also a max tree. A min heap is a co
 雖然在heap中不一定右邊比左邊 大/小  
 但是一定從 leftchild 開始填，因為必為 complete binary tree  
 **Max Heap Example**  
-![max-heap-examples]()  
+![max-heap-examples](https://github.com/joyce-hsu/data-structure/blob/master/max-heap-examples.png)  
 **Min Heap Example**  
-![min-heap-examples]()  
+![min-heap-examples](https://github.com/joyce-hsu/data-structure/blob/master/min-heap-examples.png)  
 這裡是使用array來表示tree  
   
 **Insertion Into a Max Heap**  
-![insertion-heap]()  
-![insertion-heap2]()  
-![insertion-heap3]()  
+![insertion-heap](https://github.com/joyce-hsu/data-structure/blob/master/insertion-heap.png)  
+![insertion-heap2](https://github.com/joyce-hsu/data-structure/blob/master/insertion-heap2.png)  
+![insertion-heap3](https://github.com/joyce-hsu/data-structure/blob/master/insertion-heap3.png)  
 
 ````
 template <class Type>
