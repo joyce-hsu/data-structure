@@ -494,6 +494,7 @@ A data structure supports the above two operations is called max (min) priority 
 machine service
 - amount of time (min heap)
 - amount of payment (max heap)  
+
 以後看到 priority queue = heap  
 
 **比較**  
@@ -504,6 +505,7 @@ machine service
 |Sorted array|O(n)|Θ(1)|
 |Sorted linked list|O(n)|Θ(1)|
 |Max heap|O(log2n)|O(log2n)|  
+
 *2是小標*  
 Unordered array 和 Unordered linked list 再放入的時候都是直接放到最後沒有排序，delete最大的時候就要排序  
 O(log2n)代表用tree來表示  
