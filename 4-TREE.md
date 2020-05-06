@@ -547,3 +547,57 @@ void MaxHeap<Type>::Insert(const Element <Type> &x)
 ````  
 把新來的數字放最後，再和parent比較，如果比parent大就swap，沒有就停下  
 n表示目前array末的位置  
+  
+**Deletion From A Max Heap** 
+````
+template <class Type>
+Element <Type>* MaxHeap <Type>::DeleteMax(Element <Type>& x)
+// Delete from the max heap
+{
+    if (!n) {HeapEmpty(); return 0;}
+    
+    x = heap[1];
+    Element <Type> k = heap[n];
+    n--;
+    for (int i = 1, j = 2; j < =n;)
+        {
+            if (j < n)
+            {
+                if (heap[j].key < heap[j+1].key)
+                    j++;
+            }
+        // j points to the larger child
+        if (k.key >= heap[j].key) break;
+        heap[i] = heap[j];
+        i = j; j *= 2;
+        }
+    heap[i] = k;
+    return &x;
+}
+````  
+![heap1](https://github.com/joyce-hsu/data-structure/blob/master/heap1.png)  
+![heap2](https://github.com/joyce-hsu/data-structure/blob/master/heap2.png)  
+
+在第5個位置的10像打彈珠一樣被打上去  
+以變數k暫存  
+delete第五個位置的空間  
+接下來和其他人比大小，找到新的位置  
+
+delete from the max heap  
+總共有兩步驟:
+1. scan array **O(n)**  
+2. 調整tree **O(log n)**  
+相加後得到的複雜度為  **O(n)**  
+
+**比較**
+max heap: root最大  
+min heap: root最小  
+insert: buttom up    
+delete: top down  
+
+
+**heap sort**  
+如果要數字從小到大?
+step1. 建立出min heap - insert n次  **O(n*\ log n)**
+step2. n個數字依序印n次 - delete n次  **O(n*\ log n)**
+
