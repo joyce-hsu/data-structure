@@ -589,7 +589,7 @@ delete from the max heap
 2. 調整tree **O(log n)**  
 相加後得到的複雜度為  **O(n)**  
 
-**比較**
+**比較**  
 max heap: root最大  
 min heap: root最小  
 insert: buttom up    
@@ -597,7 +597,7 @@ delete: top down
 
 
 **heap sort**  
-如果要數字從小到大?
-step1. 建立出min heap - insert n次  **O(n*\ log n)**
-step2. n個數字依序印n次 - delete n次  **O(n*\ log n)**
+如果要數字從小到大?  
+step1. 建立出min heap - insert n次  **O(n\* log n)**  
+step2. n個數字依序印n次 - delete n次  **O(n\* log n)**  
 
