@@ -575,7 +575,7 @@ Element <Type>* MaxHeap <Type>::DeleteMax(Element <Type>& x)
     return &x;
 }
 ````  
-![heap1](https://github.com/joyce-hsu/data-structure/blob/master/heap1.png)  
+![heap1](https://github.com/joyce-hsu/data-structure/blob/master/heap1.png)
 ![heap2](https://github.com/joyce-hsu/data-structure/blob/master/heap2.png)  
 
 在第5個位置的10像打彈珠一樣被打上去  
