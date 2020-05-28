@@ -604,7 +604,7 @@ step2. n個數字依序印n次 - delete n次  **O(n\* log n)**
 
 ---
 
-###binary search tree
+### binary search tree
 左子樹< root < 右子樹  
   
 K = 5-3(減去左邊三個數字)  
@@ -620,7 +620,7 @@ AVL tree會平衡兩邊subtree
 
 ---
 
-###winner tree  
+### winner tree  
 run1~8各派最小的數字  
 再來兩兩比較  最後最小的數字往上走  
 
