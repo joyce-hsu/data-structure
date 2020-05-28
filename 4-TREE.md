@@ -602,3 +602,40 @@ delete: top down
 step1. 建立出min heap - insert n次  **O(n\* log n)**  
 step2. n個數字依序印n次 - delete n次  **O(n\* log n)**  
 
+---
+
+###binary search tree
+左子樹< root < 右子樹  
+  
+K = 5-3(減去左邊三個數字)  
+
+leftsize怎麼決定的?怎麼算出來?  
+我猜:insert的時候計數  
+  
+BST數字輸入順序會影響tree的長相
+ex.1.2.3.4.5.6.7.8.9.....會得到skewed tree  
+
+AVL tree會平衡兩邊subtree  
+兩側subtree level差 1 左右  
+
+---
+
+###winner tree  
+run1~8各派最小的數字  
+再來兩兩比較  最後最小的數字往上走  
+
+為何要winner tree?  
+數字很多，memory放不下時  
+將數字分成八份(partition)，每份先sort  
+
+- Merge sort
+- External sorting ~ memory放不下數據時  
+
+---  
+
+題外話:
+大一大二大三學基礎背景:data structure、OS  
+大四選專長:分散式、雲端運算  
+
+---
+
