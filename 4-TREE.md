@@ -440,7 +440,8 @@ void ThreadedTree::InsertRight(ThreadNode *s, ThreadedNode *r)
 
 ---
 
-### Huffman Codes <https://github.com/joyce-hsu/data-structure/blob/master/5-Huffman%20Coding.md>   
+### Huffman Codes  
+[Huffman Codes](https://github.com/joyce-hsu/data-structure/blob/master/5-Huffman%20Coding.md)   
 我們要將整篇文章編碼，事先將頻繁使用的word記錄下來，並讓頻繁字詞使用最少單位的碼(code size小)  
 如此一來解碼比較快  
 
