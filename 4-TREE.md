@@ -662,3 +662,30 @@ find, disjoint 用 array 表示時只要動數值:方便
 |:---:|:---:|:---:|
 |union|O(n)|n-1|
 |find|O(n^2)|cost太高|
+
+---
+
+weighting rule  
+比node數，node多的當root  
+
+collapsing 如果發現find(i)的動作很頻繁 就把i拉上來  
+
+如何知道大家會做find(7)很多次?  
+predict!  統計!(通常出現一次之後會接連出現?次...當"?"大於某個值就當作很多次)  
+
+用array會很快(複雜度很低)和之前學的(2 phase完成)優缺在哪裡?  
+
+箭頭方向相反也可以  
+
+隨便抓a當root 只給inorder得到的binary tree 不是唯一  
+要多給preorder  
+=>如何證明?  我的答案:preorder的第一個一定是root所以root會確定下來  
+
+---
+
+### summary  
+heap  
+BST  
+如何insert, delete  
+traversal : inorder, preorder, postorder  
+為何traversal : copy tree, postfix
