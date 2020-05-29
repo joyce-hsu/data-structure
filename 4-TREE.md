@@ -605,9 +605,68 @@ step2. n個數字依序印n次 - delete n次  **O(n\* log n)**
 ---
 
 ### binary search tree
+
+![binary-tree](https://github.com/joyce-hsu/data-structure/blob/master/binary-tree1.png) 
 左子樹< root < 右子樹  
   
+``
+template <class Type> //Driver
+BstNode <Type>* BST <Type>::Search(const Element <Type>& x)
+//Search the binary search tree (*this) for an element with key x.
+//If such an element is found, return a pointer to the node that
+//contains it.
+{
+    return Search(root, x);
+}
+template <class Type> //Workhorse
+BstNode <Type>* BST <Type>::Search(BstNode<Type>*b,
+const Element <Type>&x)
+{
+    if(!b) return 0;
+    if(x.key == b->data.key) return b;
+    if(x.key < b->data.key) return Search(b->LeftChild, x);
+    return Search(b->RightChild, x);
+}
+``
+
+``
+template <class Type>
+BstNode <Type>*BST<Type>::IterSearch(const Element<Type>& x)
+//Search the binary search tree for an element with key x
+{
+    for(BstNode<Type> *t = root; t;)
+        {
+        if(x.key == t->data.key) return t;
+        if(x.key < t->data.key) t = t->LeftChild;
+        else t = t->RightChild;
+        }
+    return 0;
+}
+``
+  
+### Searching A Binary Search Tree by Rank  
+
+![binary-search-tree](https://github.com/joyce-hsu/data-structure/blob/master/binary-search-tree.png)  
 K = 5-3(減去左邊三個數字)  
+
+``
+template <class Type>
+BstNode <Type>* BST<Type>::Search(int k)
+// Search the binary search tree for the kth smallest element
+{
+    BstNode<Type> *t = root;
+    while(t)
+        {
+            if (k == t->LeftSize) return t;
+            if (k < t->LeftSize) t = t->LeftChild;
+            else {
+                k -=t-> LeftSize;
+                t = t->RightChild;
+                }
+        }
+    return 0;
+}
+``
 
 leftsize怎麼決定的?怎麼算出來?  
 我猜:insert的時候計數  
@@ -619,16 +678,40 @@ AVL tree會平衡兩邊subtree
 兩側subtree level差 1 左右  
 
 ---
+### Selection Trees  
+1. winner tree
+2. loser tree
+  
 
 ### winner tree  
 run1~8各派最小的數字  
 再來兩兩比較  最後最小的數字往上走  
+
+![winner-tree](https://github.com/joyce-hsu/data-structure/blob/master/winner-tree.png) 
+  
+6被output出去 15就上來了  
+![winner-tree2](https://github.com/joyce-hsu/data-structure/blob/master/winner-tree2.png) 
+**Analysis**  
+- K: # of runs
+- n: # of records
+- setup time: O(K)  //*(K-1)
+- restructure time: O(log2K)  //*log2(K+1)
+- merge time: O(nlog2K)
+- slight modification: tree of loser
+  - consider the parent node only (vs. sibling nodes)
+
+### loser tree  
+是winner tree的小修改  
+兩兩比較 數字大的占據path 所以只要跟parent比就好 
+![loser-tree](https://github.com/joyce-hsu/data-structure/blob/master/loser-tree.png)  
+![loser-tree2](https://github.com/joyce-hsu/data-structure/blob/master/loser-tree2.png) 
 
 為何要winner tree?  
 數字很多，memory放不下時  
 將數字分成八份(partition)，每份先sort  
 
 - Merge sort
+- Internal Sort
 - External sorting ~ memory放不下數據時  
 
 ---  
@@ -638,21 +721,27 @@ run1~8各派最小的數字
 大四選專長:分散式、雲端運算  
 
 ---
+### Set Representation  
+![set-representation](https://github.com/joyce-hsu/data-structure/blob/master/set-representation.png)  
 
+![set-representation2](https://github.com/joyce-hsu/data-structure/blob/master/set-representation2.png)  
 雙向箭頭表示雙向鏈結  
 因為找到某數字後才能藉由雙向鏈結得知在哪一組set  
 
-union  
-把S2的root連到S1的root  
-把S1的root連到S2的root  
+**Disjoint Set Union**
+tree -> forest  
+![union](https://github.com/joyce-hsu/data-structure/blob/master/union.png)  
+把S2的root連到S1的root  把S1的root連到S2的root  
 
 用array表示  
 parent = -1 代表是root  
+|i|[0]|[1]|[2]|[3]|[4]|[5]|[6]|[7]|[8]|[9]|
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|parent|-1|4|-1|2|-1|2|0|0|0|4|
 
 array如何union  
 把S2 root 指到 S1 root  
-ex. parent[4] = -1 -> parent[4] = 0
-只要改變一個  
+ex. parent[4] = -1 -> parent[4] = 0  只要改變一個  
 
 問:哪個好用?  
 find, disjoint 用 array 表示時只要動數值:方便  
@@ -665,18 +754,36 @@ find, disjoint 用 array 表示時只要動數值:方便
 
 ---
 
-weighting rule  
+### weighting rule  
 比node數，node多的當root  
 
-collapsing 如果發現find(i)的動作很頻繁 就把i拉上來  
-
+### collapsing  
+如果發現find(i)的動作很頻繁 就把i拉上來  
+![collapsing](https://github.com/joyce-hsu/data-structure/blob/master/collapsing.png)  
+![collapsing2](https://github.com/joyce-hsu/data-structure/blob/master/collapsing2.png)  
 如何知道大家會做find(7)很多次?  
 predict!  統計!(通常出現一次之後會接連出現?次...當"?"大於某個值就當作很多次)  
 
+
+**Applications**  
+- Find equivalence class i ≡ j
+- Find Si and Sj such that i ∈ Si and j ∈ Sj (two finds)
+  - Si = Sj do nothing
+  - Si ≠ Sj union(Si , Sj)
+- example 0 ≡ 4, 3 ≡ 1, 6 ≡ 10, 8 ≡ 9, 7 ≡ 4, 6 ≡ 8, 3 ≡ 5, 2 ≡ 11, 11 ≡ 0  
+{0, 2, 4, 7, 11}, {1, 3, 5}, {6, 8, 9, 10}
+  
+![example5.5](https://github.com/joyce-hsu/data-structure/blob/master/example5.5.png)  
+![example5.5-2](https://github.com/joyce-hsu/data-structure/blob/master/example5.5-2.png)  
 用array會很快(複雜度很低)和之前學的(2 phase完成)優缺在哪裡?  
 
 箭頭方向相反也可以  
 
+---
+
+### Constructing A Binary Tree From Its Inorder Sequence  
+inorder : BCAEDGHFI  
+![binary-tree-inorder](https://github.com/joyce-hsu/data-structure/blob/master/binary-tree-inorder.png)  
 隨便抓a當root 只給inorder得到的binary tree 不是唯一  
 要多給preorder  
 =>如何證明?  我的答案:preorder的第一個一定是root所以root會確定下來  
