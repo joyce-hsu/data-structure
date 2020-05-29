@@ -639,3 +639,26 @@ run1~8各派最小的數字
 
 ---
 
+雙向箭頭表示雙向鏈結  
+因為找到某數字後才能藉由雙向鏈結得知在哪一組set  
+
+union  
+把S2的root連到S1的root  
+把S1的root連到S2的root  
+
+用array表示  
+parent = -1 代表是root  
+
+array如何union  
+把S2 root 指到 S1 root  
+ex. parent[4] = -1 -> parent[4] = 0
+只要改變一個  
+
+問:哪個好用?  
+find, disjoint 用 array 表示時只要動數值:方便  
+可是一定也有缺點, 缺點自己想xd  
+
+|動作|複雜度|備註|
+|:---:|:---:|:---:|
+|union|O(n)|n-1|
+|find|O(n^2)|cost太高|
