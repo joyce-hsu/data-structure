@@ -609,7 +609,7 @@ step2. n個數字依序印n次 - delete n次  **O(n\* log n)**
 ![binary-tree](https://github.com/joyce-hsu/data-structure/blob/master/binary-tree1.png) 
 左子樹< root < 右子樹  
   
-``
+````
 template <class Type> //Driver
 BstNode <Type>* BST <Type>::Search(const Element <Type>& x)
 //Search the binary search tree (*this) for an element with key x.
@@ -627,9 +627,9 @@ const Element <Type>&x)
     if(x.key < b->data.key) return Search(b->LeftChild, x);
     return Search(b->RightChild, x);
 }
-``
+````
 
-``
+````
 template <class Type>
 BstNode <Type>*BST<Type>::IterSearch(const Element<Type>& x)
 //Search the binary search tree for an element with key x
@@ -642,14 +642,14 @@ BstNode <Type>*BST<Type>::IterSearch(const Element<Type>& x)
         }
     return 0;
 }
-``
+````
   
 ### Searching A Binary Search Tree by Rank  
 
 ![binary-search-tree](https://github.com/joyce-hsu/data-structure/blob/master/binary-search-tree.png)  
 K = 5-3(減去左邊三個數字)  
 
-``
+````
 template <class Type>
 BstNode <Type>* BST<Type>::Search(int k)
 // Search the binary search tree for the kth smallest element
@@ -666,7 +666,7 @@ BstNode <Type>* BST<Type>::Search(int k)
         }
     return 0;
 }
-``
+````
 
 leftsize怎麼決定的?怎麼算出來?  
 我猜:insert的時候計數  
@@ -702,7 +702,7 @@ run1~8各派最小的數字
 
 ### loser tree  
 是winner tree的小修改  
-兩兩比較 數字大的占據path 所以只要跟parent比就好 
+兩兩比較 數字大的占據path 所以只要跟parent比就好  
 ![loser-tree](https://github.com/joyce-hsu/data-structure/blob/master/loser-tree.png)  
 ![loser-tree2](https://github.com/joyce-hsu/data-structure/blob/master/loser-tree2.png) 
 
@@ -775,7 +775,7 @@ predict!  統計!(通常出現一次之後會接連出現?次...當"?"大於某�
   
 ![example5.5](https://github.com/joyce-hsu/data-structure/blob/master/example5.5.png)  
 ![example5.5-2](https://github.com/joyce-hsu/data-structure/blob/master/example5.5-2.png)  
-用array會很快(複雜度很低)和之前學的(2 phase完成)優缺在哪裡?  
+用array會很快(複雜度很低)和[之前學的](https://github.com/joyce-hsu/data-structure/blob/master/3-LINKED%20LISTS.md#equivalence-relations)(需要2 phase完成)優缺在哪裡?  
 
 箭頭方向相反也可以  
 
@@ -795,4 +795,5 @@ heap
 BST  
 如何insert, delete  
 traversal : inorder, preorder, postorder  
-為何traversal : copy tree, postfix
+為何traversal : copy tree, postfix  
+set  
