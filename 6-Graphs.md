@@ -71,3 +71,117 @@ vertex 是 A,B,C,D
 **Subgraphs**  
 graph的子集合   
 ![subgraph]()  
+
+**Graphs with Two Connected Components**
+![connected-components]()  
+Connected Components:表示任兩點都有連接，ex.4可以走到7  
+
+**Strongly Connected Components of G3**  
+![connected-components-strongly]()  
+有方向性時會更嚴格
+沒其他的頂點，是極端的例子(通常叫isolation point)  
+
+---
+
+### Degree of A Vertex  
+- Degree of a vertex: The degree of a vertex is the number of edges incident to that vertex.
+- If G is a directed graph, then we define
+  - in-degree of a vertex: is the number of edges for which vertex is the head.
+  - out-degree of a vertex: is the number of edges for which the vertex is the tail.
+- For a graph G with n vertices and e edges, if di is the degree of a vertex i in G, then the number of edges of G is  ![degree-of-vertex]()  除以2是在無方向之下的例子  
+  
+**Abstract of Data Type Graphs**
+````
+class Graph
+{
+// objects: A nonempty set of vertices and a set of undirected edges
+// where each edge is a pair of vertices
+public:
+    Graph(); // Create an empty graph
+    void InsertVertex(Vertex v);
+    void InsertEdge(Vertex u, Vertex v);
+    void DeleteVertex(Vertex v);
+    void DeleteEdge(Vertex u, Vertex v);
+    
+    Boolean IsEmpty(); // if graph has no vertices return TRUE
+    
+    List<List> Adjacent(Vertex v);
+    // return a list of all vertices that are adjacent to v
+};
+````  
+---
+### Adjacency Matrix Representation
+![adjacency-matrix]()  
+頂點個數的平方  很花時間  
+
+### Adjacency List Representation  
+![adjacent-ists]()  
+![adjacent-ists2]()  
+
+### Sequential Representation of Graph G4  
+![sequential-representation-graph]()  
+0和誰有連接? index=0的地方存著9  代表要找index=9  可以看出0和1,2有連接  
+第1~7格儲存查表位置  
+因為是一為陣列，所以插入/刪去頂點時麻煩
+**Inverse Adjacency Lists for G3**  
+![inverse-adjacency-lists]()  
+看誰有連到某數  
+
+
+### Multilists  
+- In the adjacency-list representation of an undirected graph, each edge (u, v) is
+represented by two entries.
+- Multilists: To be able to determine the second entry for a particular edge and
+mark that edge as having been examined, we use a structure called multilists.
+  - Each edge is represented by one node.
+  - Each node will be in two lists.  
+  
+![multilists]()  
+紅色N1 N2 和0有關的紀錄位置  
+headnode1 2 3 4 表示頂點 指向第一次出現的位置  
+N0~N5 edge的編號
+
+**小總結**  
+有四個表示法:  
+1. matrix  
+2. Adjacency List  
+3. 1-D array  
+4. multilist  
+前三個同一個邊(u, v)在u被記錄,在v也被記錄  
+multilist 以edge為主  (u, v)不被記錄兩次  
+  
+road network 的頂點是?  交叉路口即為一個頂點  
+
+--
+### Weighted Edges  
+- Very often the edges of a graph have weights associated with them.
+  - distance from one vertex to another
+  - cost of going from one vertex to an adjacent vertex.
+  - To represent weight, we need additional field, weight, in each entry.
+  - A graph with weighted edges is called a network.
+
+---
+### Graph Operations  
+- A general operation on a graph G is to visit all vertices in G that are reachable from a vertex v.
+  - Depth-first search
+  - Breath-first search  
+  
+**Depth-First Search 深度優先**  
+- Depth First Search: generalization of preorder traversal
+- Starting from vertex v, process v & then recursively traverse all vertices adjacent to v.
+- To avoid cycles, mark visited vertex  
+- Analysis of DFS
+  - If G is represented by its adjacency lists, the DFS time complexity is O(e).
+  - If G is represented by its adjacency matrix, then the time complexity to complete DFS is O(n2).  
+![depth-first-search]()  
+拜訪順序:0-1-3-7-4-5-2-6  
+有一個boolean紀錄該數是否被output過  
+用recursive跑不斷呼叫  
+拜訪順序是否是唯一?  否，如果adjacency lists不同結果就會不同  
+  
+**Breath-First Search 廣度優先**  
+- Breadth First search (BFS): level order tree traversal
+- BFS algorithm: using queue
+拜訪A之後把BCD存在queue，然後因為沒有其他與A同深度的，故印出B  
+印出B之後把C存進queue，接下來把D印出，同樣會讀取到C，但是C已經在queue中，就不重複存入  
+接下來把E印出後，就印C了
