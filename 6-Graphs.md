@@ -115,8 +115,8 @@ public:
 頂點個數的平方  很花時間  
 
 ### Adjacency List Representation  
-![adjacent-lsts](https://github.com/joyce-hsu/data-structure/blob/master/adjacent-lsts.png)  
-![adjacent-lsts2](https://github.com/joyce-hsu/data-structure/blob/master/adjacent-lsts2.png)  
+![adjacent-lists](https://github.com/joyce-hsu/data-structure/blob/master/adjacent-lists.png)  
+![adjacent-lists2](https://github.com/joyce-hsu/data-structure/blob/master/adjacent-lists2.png)  
 
 ### Sequential Representation of Graph G4  
 ![sequential-representation-graph](https://github.com/joyce-hsu/data-structure/blob/master/sequential-representation-graph.png)  
@@ -181,7 +181,7 @@ road network 的頂點是?  交叉路口即為一個頂點
   
 **Breath-First Search 廣度優先**  
 - Breadth First search (BFS): level order tree traversal
-- BFS algorithm: using queue
+- BFS algorithm: using queue  
 ![breadth-first-search](https://github.com/joyce-hsu/data-structure/blob/master/breadth-first-search.png)  
 拜訪A之後把BCD存在queue，然後因為沒有其他與A同深度的，故印出B  
 印出B之後把C存進queue，接下來把D印出，同樣會讀取到C，但是C已經在queue中，就不重複存入  
