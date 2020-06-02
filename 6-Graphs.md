@@ -115,8 +115,8 @@ public:
 頂點個數的平方  很花時間  
 
 ### Adjacency List Representation  
-![adjacent-ists](https://github.com/joyce-hsu/data-structure/blob/master/adjacent-ists.png)  
-![adjacent-ists2](https://github.com/joyce-hsu/data-structure/blob/master/adjacent-ists2.png)  
+![adjacent-lsts](https://github.com/joyce-hsu/data-structure/blob/master/adjacent-lsts.png)  
+![adjacent-lsts2](https://github.com/joyce-hsu/data-structure/blob/master/adjacent-lsts2.png)  
 
 ### Sequential Representation of Graph G4  
 ![sequential-representation-graph](https://github.com/joyce-hsu/data-structure/blob/master/sequential-representation-graph.png)  
