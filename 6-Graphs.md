@@ -33,7 +33,7 @@ vertex 是 A,B,C,D
 - Graphs can be either undirected graphs or directed graphs.
 - For a undirected graph, a pair of vertices (u, v) or (v, u) represent the same edge.
 - For a directed graph, a directed pair <u, v> has u as the tail and the v as the head. Therefore, <u, v> and <v, u> represent different edges.  
-![graphs-sample](https://github.com/joyce-hsu/data-structure/blob/master/graphs-sample.png) 
+![graphs-sample](https://github.com/joyce-hsu/data-structure/blob/master/graphs-sample%20.png) 
 
 **Graph Restrictions**  
 - A graph may not have an edge from a vertex back to itself
