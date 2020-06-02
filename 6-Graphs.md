@@ -1,7 +1,7 @@
 ### Konigsberg Bridge Problem  
 
-![konigsberg-bridge]()  
-![konigsberg-bridge2]()  
+![konigsberg-bridge](https://github.com/joyce-hsu/data-structure/blob/master/konigsberg-bridge.png)  
+![konigsberg-bridge2](https://github.com/joyce-hsu/data-structure/blob/master/konigsberg-bridge2.png)  
 B點degree=3 , A點degree=3  
 
 
@@ -33,7 +33,7 @@ vertex 是 A,B,C,D
 - Graphs can be either undirected graphs or directed graphs.
 - For a undirected graph, a pair of vertices (u, v) or (v, u) represent the same edge.
 - For a directed graph, a directed pair <u, v> has u as the tail and the v as the head. Therefore, <u, v> and <v, u> represent different edges.  
-![graphs-sample]() 
+![graphs-sample](https://github.com/joyce-hsu/data-structure/blob/master/graphs-sample.png) 
 
 **Graph Restrictions**  
 - A graph may not have an edge from a vertex back to itself
@@ -43,7 +43,7 @@ vertex 是 A,B,C,D
 - A graph may not have multiple occurrences of the same edge
   - Without this restriction, it is called a multigraph.
 
-![graphs-sample2]()  
+![graphs-sample2](https://github.com/joyce-hsu/data-structure/blob/master/graphs-sample2.png)  
 (a)NLP(Natural Language Processing)檢查語法時可能會遇到  
 (b)3號po文2號按讚多次發生把這些時間點記錄下來就有可能multigraph  
 
@@ -70,14 +70,14 @@ vertex 是 A,B,C,D
   
 **Subgraphs**  
 graph的子集合   
-![subgraph]()  
+![subgraph](https://github.com/joyce-hsu/data-structure/blob/master/subgraph.png)  
 
 **Graphs with Two Connected Components**
-![connected-components]()  
+![connected-components](https://github.com/joyce-hsu/data-structure/blob/master/connected-components.png)  
 Connected Components:表示任兩點都有連接，ex.4可以走到7  
 
 **Strongly Connected Components of G3**  
-![connected-components-strongly]()  
+![connected-components-strongly](https://github.com/joyce-hsu/data-structure/blob/master/connected-components-strongly.png)  
 有方向性時會更嚴格
 沒其他的頂點，是極端的例子(通常叫isolation point)  
 
@@ -88,7 +88,7 @@ Connected Components:表示任兩點都有連接，ex.4可以走到7
 - If G is a directed graph, then we define
   - in-degree of a vertex: is the number of edges for which vertex is the head.
   - out-degree of a vertex: is the number of edges for which the vertex is the tail.
-- For a graph G with n vertices and e edges, if di is the degree of a vertex i in G, then the number of edges of G is  ![degree-of-vertex]()  除以2是在無方向之下的例子  
+- For a graph G with n vertices and e edges, if di is the degree of a vertex i in G, then the number of edges of G is  ![degree-of-vertex](https://github.com/joyce-hsu/data-structure/blob/master/degree-of-vertex.png)  除以2是在無方向之下的例子  
   
 **Abstract of Data Type Graphs**
 ````
@@ -111,20 +111,20 @@ public:
 ````  
 ---
 ### Adjacency Matrix Representation
-![adjacency-matrix]()  
+![adjacency-matrix](https://github.com/joyce-hsu/data-structure/blob/master/adjacency-matrix.png)  
 頂點個數的平方  很花時間  
 
 ### Adjacency List Representation  
-![adjacent-ists]()  
-![adjacent-ists2]()  
+![adjacent-ists](https://github.com/joyce-hsu/data-structure/blob/master/adjacent-ists.png)  
+![adjacent-ists2](https://github.com/joyce-hsu/data-structure/blob/master/adjacent-ists2.png)  
 
 ### Sequential Representation of Graph G4  
-![sequential-representation-graph]()  
+![sequential-representation-graph](https://github.com/joyce-hsu/data-structure/blob/master/sequential-representation-graph.png)  
 0和誰有連接? index=0的地方存著9  代表要找index=9  可以看出0和1,2有連接  
 第1~7格儲存查表位置  
 因為是一為陣列，所以插入/刪去頂點時麻煩
 **Inverse Adjacency Lists for G3**  
-![inverse-adjacency-lists]()  
+![inverse-adjacency-lists](https://github.com/joyce-hsu/data-structure/blob/master/inverse-adjacency-lists.png)  
 看誰有連到某數  
 
 
@@ -136,7 +136,7 @@ mark that edge as having been examined, we use a structure called multilists.
   - Each edge is represented by one node.
   - Each node will be in two lists.  
   
-![multilists]()  
+![multilists](https://github.com/joyce-hsu/data-structure/blob/master/multilists.png)  
 紅色N1 N2 和0有關的紀錄位置  
 headnode1 2 3 4 表示頂點 指向第一次出現的位置  
 N0~N5 edge的編號
@@ -173,7 +173,7 @@ road network 的頂點是?  交叉路口即為一個頂點
 - Analysis of DFS
   - If G is represented by its adjacency lists, the DFS time complexity is O(e).
   - If G is represented by its adjacency matrix, then the time complexity to complete DFS is O(n2).  
-![depth-first-search]()  
+![depth-first-search](https://github.com/joyce-hsu/data-structure/blob/master/depth-first-search.png)  
 拜訪順序:0-1-3-7-4-5-2-6  
 有一個boolean紀錄該數是否被output過  
 用recursive跑不斷呼叫  
@@ -182,6 +182,7 @@ road network 的頂點是?  交叉路口即為一個頂點
 **Breath-First Search 廣度優先**  
 - Breadth First search (BFS): level order tree traversal
 - BFS algorithm: using queue
+![breadth-first-search](https://github.com/joyce-hsu/data-structure/blob/master/breadth-first-search.png)  
 拜訪A之後把BCD存在queue，然後因為沒有其他與A同深度的，故印出B  
 印出B之後把C存進queue，接下來把D印出，同樣會讀取到C，但是C已經在queue中，就不重複存入  
 接下來把E印出後，就印C了
