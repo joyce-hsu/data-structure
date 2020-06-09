@@ -187,7 +187,7 @@ road network 的頂點是?  交叉路口即為一個頂點
 印出B之後把C存進queue，接下來把D印出，同樣會讀取到C，但是C已經在queue中，就不重複存入  
 接下來把E印出後，就印C了
   
-**小比較
+**小比較**
 - DFS: 用 recursive 或 stack
 - BFS: 用 queue
 
