@@ -193,3 +193,53 @@ road network 的頂點是?  交叉路口即為一個頂點
 
 ---
 
+### Spanning Trees  
+![dfs-bfs](https://github.com/joyce-hsu/data-structure/blob/master/dfs-bfs.png)  
+spanning tree 只要任兩點有相連就好!
+
+**minimum-cost spanning tree is a spanning tree of least cost**  
+Cost: the sum of the costs (weights) of the edges in the spanning tree  
+**Three greedy-method algorithms available to obtain a minimum-cost spanning tree**  
+- Kruskal’s algorithm
+- Prim’s algorithm
+- Sollin’s algorithm  
+
+**Kruskal’s Algorithm**  
+以「邊」的角度出發  
+1. 選出weights最小的edge
+2. 不要產生cycle  有cycle的話就跳過不選  
+
+![kruskals-algorithm](https://github.com/joyce-hsu/data-structure/blob/master/kruskals-algorithm.png)  
+![kruskals-algorithm2](https://github.com/joyce-hsu/data-structure/blob/master/kruskals-algorithm2.png)  
+![kruskals-algorithm3](https://github.com/joyce-hsu/data-structure/blob/master/kruskals-algorithm3.png)  
+6跟3之間的edge其weights是18 可是不能選因為會變成cycle  
+
+**Prim’s Algorithm**  
+以「點」的角度出發  
+1. 選出weights最小的edge
+2. 觀察這個最小edge旁的兩個vertex延伸出的edge 從中再選出weights最小的edge  
+3. 不要造成cycle  
+![prims-algorithm](https://github.com/joyce-hsu/data-structure/blob/master/prims-algorithm.png)  
+1. 選出weights= 10 的 edge
+2. 這個edge兩邊分別為0,5  0延伸出的邊剩下weight=28  5延伸出的邊剩下weight=25  所以選weight=25 的 edge  
+3. 已連的頂點其延伸的edge都可以加入比較  
+![prims-algorithm2](https://github.com/joyce-hsu/data-structure/blob/master/prims-algorithm2.png)  
+
+**Sollin’s Algorithm**  
+一次抓很多邊  
+1. 抓每個頂點延伸出的edge weight最小的  
+2. 和prim法很像  將已連的頂點 其延伸的edge都加入比較  
+3. 同樣注意不要造成cycle  
+![sollins-algorithm](https://github.com/joyce-hsu/data-structure/blob/master/sollins-algorithm.png)  
+
+**如有多個相同weight的edge，不同演算法得到的結果可能不同**  
+
+---
+
+### Biconnected Components
+Definition: A vertex v of G is an articulation point iff the deletion of v, together with the deletion of all edges incident to v, leaves behind a graph that has at least two connected components
+Definition: A biconnected graph is a connected graph that has no articulation points
+Definition: A biconnected component of a connected graph G is a maximal biconnected
+subgraph H of G
+  - G contains no other subgraph that is both biconnected and properly contains H.
+  
