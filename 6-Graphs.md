@@ -220,9 +220,9 @@ Cost: the sum of the costs (weights) of the edges in the spanning tree
 2. 觀察這個最小edge旁的兩個vertex延伸出的edge 從中再選出weights最小的edge  
 3. 不要造成cycle  
 ![prims-algorithm](https://github.com/joyce-hsu/data-structure/blob/master/prims-algorithm.png)  
-1. 選出weights= 10 的 edge
-2. 這個edge兩邊分別為0,5  0延伸出的邊剩下weight=28  5延伸出的邊剩下weight=25  所以選weight=25 的 edge  
-3. 已連的頂點其延伸的edge都可以加入比較  
+  1. 選出weights= 10 的 edge
+  2. 這個edge兩邊分別為0,5  0延伸出的邊剩下weight=28  5延伸出的邊剩下weight=25  所以選weight=25 的 edge  
+  3. 已連的頂點其延伸的edge都可以加入比較  
 ![prims-algorithm2](https://github.com/joyce-hsu/data-structure/blob/master/prims-algorithm2.png)  
 
 **Sollin’s Algorithm**  
